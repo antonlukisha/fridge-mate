@@ -1,4 +1,4 @@
-FridgeMate
+# FridgeMate
 About | Description | Algorithm | Bash Example | License
 
 :dart: About
