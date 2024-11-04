@@ -1,0 +1,158 @@
+services:
+  gateway:
+    build: ./backend/gateway/app
+    image: gateway:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=gateway
+      - SPRING_CLOUD_GATEWAY_ROUTES=[...]
+    depends_on:
+      - product-service
+      - recommendation-service
+      - recipe-service
+      - notification-service
+      - auth-service
+      - expense-service
+
+  product-service:
+    build: ./backend/product-service/app
+    image: product-service:latest
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=product-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/fridgemate
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+    depends_on:
+      - db
+      - redis
+      - kafka
+
+  recommendation-service:
+    build: ./backend/recommendation-service/app
+    image: recommendation-service:latest
+    ports:
+      - "8082:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=recommendation-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/fridgemate
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+    depends_on:
+      - db
+      - redis
+      - kafka
+
+  recipe-service:
+    build: ./backend/recipe-service/app
+    image: recipe-service:latest
+    ports:
+      - "8083:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=recipe-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/fridgemate
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+    depends_on:
+      - db
+      - redis
+      - kafka
+
+  notification-service:
+    build: ./backend/notification-service/app
+    image: notification-service:latest
+    ports:
+      - "8084:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=notification-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/fridgemate
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+    depends_on:
+      - db
+      - redis
+      - kafka
+
+  auth-service:
+    build: ./backend/auth-service/app
+    image: auth-service:latest
+    ports:
+      - "8085:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=auth-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/fridgemate
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+    depends_on:
+      - db
+      - redis
+      - kafka
+
+  expense-service:
+    build: ./backend/expense-serviсe/app
+    image: expense-service:latest
+    ports:
+      - "8086:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=expense-service
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/fridgemate
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+    depends_on:
+      - db
+      - redis
+      - kafka
+
+  recommendation_ai:
+    build: ./neural-networks/app
+    image: recommendation_ai:latest
+    ports:
+      - "5000:5000"
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  zookeeper:
+    image: zookeeper:latest
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:9092
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
+    depends_on:
+      - zookeeper
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
