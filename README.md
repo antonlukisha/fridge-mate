@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-cd C:\Program Files\Redis
-.\redis-server.exe
-
-cd C:\Kafka\kafka_2.13-3.8.1
-.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
-
-cd C:\Kafka\kafka_2.13-3.8.1
-.\bin\windows\kafka-server-start.bat .\config\server.properties
-=======
 # FridgeMate
 
 
@@ -25,4 +15,3 @@ The application consists of a frontend developed in React and a backend built wi
 ## :paperclip: Bash Example
 
 For run of this application project directory has `docker-compose.yml` which run all services, ai-part, front-end and another dependences.
->>>>>>> 587049ec8211f72286141db19c1ed420ff9820a0
