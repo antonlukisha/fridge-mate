@@ -1,13 +1,9 @@
 import React from 'react';
 
-const Header = () => (
+const Header = ({ name }) => (
   <div className="header">
-    <div className="date-picker">
-      <button>1-7 July, 2023</button>
-    </div>
-    <div className="user-profile">
-      <img src="https://via.placeholder.com/40" alt="User" />
-      <span>Sophia Chester</span>
+    <div>
+      <h1>{ name }</h1>
     </div>
   </div>
 );

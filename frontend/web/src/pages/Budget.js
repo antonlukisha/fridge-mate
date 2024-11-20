@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, LineElement, PointElement, LineController, CategoryScale, LinearScale, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import Header from '../components/Header';
 
 ChartJS.register( LineElement, PointElement, LineController, CategoryScale, LinearScale, Title, Tooltip, Legend );
 
@@ -93,11 +94,9 @@ const Budget = () => {
 
   return (
     <div className="main">
-      <div className="header">
-        <div>
-          <h1>Ваш бюджет</h1>
-        </div>
-      </div>
+      <Header
+        name={"Ваш бюджет"}
+      />
       <div className="container">
         <section className="chart">
           <h2>Статистика расходов</h2>
