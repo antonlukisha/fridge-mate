@@ -1,7 +1,7 @@
 # Web Frontend
 
 
-[About](#dart-about) | [Product Service](#apple-product-service) | [Notification Service](#bell-notification-service) | [Shoping List](#shopping-cart-shoping-list)
+[About](#dart-about) | [Product Service](#apple-product-service) | [Notification Service](#bell-notification-service) | [Shoping List](#shopping_cart-shoping-list)
 
 
 ## :dart: About
