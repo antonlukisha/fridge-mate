@@ -1,38 +1,463 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Exo+2:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/**************************************
+ *             Navigation             *
+ **************************************/
+.nav {
+  font-family: "Manrope", sans-serif;
+  width: 260px;
+  height: 532px;
+  background-color: #fff;
+  padding: 16px 32px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav .logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #9A55FF;
+  display: flex;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.general-label {
+  color: #6c757d;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.general-nav {
+  margin: 0;
+  font-size: 18px;
+  font-weight: normal;
+  color: #212529;
+  margin-bottom: 20px;
+}
+
+/*********************************
+ *             Chart             *
+ *********************************/
+.chart {
+  padding: 16px 32px;
+  flex: 1;
+  min-width: 350px;
+  margin: 10px;
+}
+
+canvas {
+  width: 100%;
+}
+
+/**************************************
+ *             Components             *
+ **************************************/
+/*========== 1. Dividers ==========*/
+.divider {
+  width: 100%;
+  height: 1.5px;
+  background-color: #ced4da;
+  margin: 10px 0;
+}
+
+.black-part {
+  color: #212529;
+}
+
+/*========== 2. Sections ==========*/
+.dashboard {
+  background-color: #f8f9fa;
+  padding: 22px 72px;
+  display: flex;
+}
+
+.main {
+  margin: 0 42px;
+  margin-right: 0;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.box {
+  display: flex;
+  width: 33%;
+  gap: 12px;
+}
+
+section {
+  font-family: "Manrope", sans-serif;
+  background-color: #fff;
+  padding: 16px 24px;
+  gap: 12px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+/*========== 3. Headers ==========*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-family: "Manrope", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: #212529;
+}
+
+h3 {
+  margin: 0;
+  color: #6c757d;
+
+}
+
+/****************************************
+ *             Shoping List             *
+ ****************************************/
+.shop-list {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/*********************************
+ *             Table             *
+ *********************************/
+ul {
+  overflow: hidden;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  border-radius: 4px;
+}
+
+li a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #343a40;
+  display: flex;
+  align-items: center;
+}
+
+li a svg {
+  margin-right: 10px;
+}
+
+li:hover {
+  background-color: #E7D7FF;
+}
+
+li:hover a {
+  color: #9A55FF;
+}
+
+.filter-field {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab-group {
+  display: flex;
+}
+
+.tab-item {
+  font-weight: bold;
+  padding: 8px 16px;
+  border-bottom-color: #212529;
+  border-bottom: 4px solid;
+  cursor: pointer;
+}
+
+.tab-item.active {
+  font-weight: bold;
+  padding: 8px 16px;
+  color: #9A55FF;
+  border-bottom-color: #9A55FF;
+  border-bottom: 4px solid;
+}
+
+.tab-item:hover {
+  color: #9A55FF;
+  border-bottom-color: #9A55FF;
+}
+
+thead {
+  background-color: #E7D7FF;
+  border-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: none;
+}
+
+th:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+th:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.document-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.document-table th, .document-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+/*********************************
+ *             Search            *
+ *********************************/
+/*========== 1. Search Bar ==========*/
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar input {
+  font-family: "Manrope", sans-serif;
+  color: #6c757d;
+  padding: 6px 12px;
+  border: 2px solid #ced4da;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-sizing: border-box;
+}
+
+/*========== 2. Search Field ==========*/
+.search-field {
+  display: flex;
+  position: relative;
+  font-size: 12px;
+}
+
+/********************************
+ *             Note             *
+ ********************************/
+/*========== 1. Container ==========*/
+.note-container {
+  margin: 5px 0;
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*========== 2. Textarea ==========*/
+.note-textarea {
+  background-color: #E7D7FF;
+  width: 300px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: 'Manrope', sans-serif;
+  border: none;
+  border-radius: 5px;
+  resize: none;
+  overflow: hidden;
+}
+
+.note-textarea:focus {
+  outline: none;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/**********************************
+ *             Button             *
+ **********************************/
+/*========== 1. Dark Input Button ==========*/
+.dark-input-button {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  background-color: #9A55FF;
+  color: #f8f9fa;
+  padding: 6px 12px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.dark-input-button:hover {
+  background-color: #E7D7FF;
+  color: #9A55FF;
+}
+
+/*========== 2. Dark Button ==========*/
+.dark-button {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  background-color: #9A55FF;
+  color: #f8f9fa;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.dark-button:hover {
+  background-color: #E7D7FF;
+  color: #9A55FF;
+}
+
+/*========== 3. Light Button ==========*/
+.light-button {
+  font-family: "Manrope", sans-serif;
+  color: #9A55FF;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  padding: 6px 12px;
+  border: 2px solid #9A55FF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.light-button:hover {
+  background-color: #9A55FF;
+  color: #f8f9fa;
+}
+
+/*========== 4. Sets Of Buttons ==========*/
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/*********************************
+ *            Markers            *
+ *********************************/
+/*========== 1. Status ==========*/
+.status {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.status.active {
+  background-color: #e6ffe6;
+  color: #00a500;
+}
+
+.status.expired {
+  background-color: #ffe6e6;
+  color: #e60000;  
+}
+
+.status.missing {
+  background-color: #fffacd;
+  color: #b58900;
+    
+}
+
+/*========== 2. Type ==========*/
+.type {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.type.info {
+  background-color: #e6ffe6;
+  color: #00a500;
+}
+
+.type.error {
+  background-color: #ffe6e6;
+  color: #e60000;  
+}
+
+.type.warning {
+  background-color: #fffacd;
+  color: #b58900;
+    
+}
+
+/************************************
+ *            Pagination            *
+ ************************************/
+.pagination {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.page-numbers a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #6a0dad;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.page-numbers a:hover {
+  background-color: #e7d7ff;
 }
+
+/************************************
+ *             Dropdown             *
+ ************************************/
+.dropdown {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  margin: 0 8px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #9A55FF;
+  color: #f8f9fa;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdown:focus {
+  outline: none;
+}
+
+.dropdown option {
+  appearance: none;
+  cursor: default;
+  font-weight: bold;
+  background-color: #E7D7FF;
+  color: #9A55FF;
+  border-radius: 0;
+  border: none;
+}
+
+.dropdown:last-child {
+  border-radius: 5px;
+}
+
+/***********************************
+ *             Entries             *
+ ***********************************/
+.entries {
+  font-weight: bold;
+  font-family: "Manrope", sans-serif;
+}
+
