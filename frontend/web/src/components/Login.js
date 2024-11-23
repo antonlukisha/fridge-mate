@@ -15,7 +15,9 @@ function Login() {
     try {
       const response = await api.post(`/users/login?name=${ user }&password=${ password }`, user, password);
       const { token, username, email } = response.data;
-      login( username, email, token );
+      console.log(response.data);
+      console.log('Login Successful:', username, email, token);
+      login(username, email, token);
       navigate('/');
     } catch (error) {
       if (error.response && error.response.status === 401) {

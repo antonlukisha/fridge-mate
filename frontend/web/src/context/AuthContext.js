@@ -4,24 +4,32 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const initAuthState = () => {
-    const saved = localStorage.getItem('auth');
+		const saved = localStorage.getItem('auth-data');
+  	console.log(saved);
     return saved ? JSON.parse(saved) : { auth: false, confirm: false, username: '', email: '', token: '' };
   };
 
   const [auth, setAuth] = useState(initAuthState);
 
   useEffect(() => {
-    localStorage.setItem('auth', JSON.stringify(auth));
+    localStorage.setItem('auth-data', JSON.stringify(auth));
   }, [auth]);
 
-  const login = (userData) => {
-    setAuth({ auth: true, confirm: false, ...userData });
-    localStorage.setItem('auth', JSON.stringify(userData));
-  };
+	const login = (username, email, token) => {
+	  setAuth({ auth: true, confirm: true, username, email, token });
+	  localStorage.setItem('auth-data', JSON.stringify({ auth: true, confirm: true, username, email, token }));
+	};
+
+
+	const register = (username, email, token) => {
+	  setAuth({ auth: true, confirm: false, username, email, token });
+	  localStorage.setItem('auth-data', JSON.stringify({ auth: true, confirm: false, username, email, token }));
+	};
+
 
   const logout = () => {
     setAuth({ auth: false, confirm: false, username: '', email: '', token: '' });
-    localStorage.removeItem('auth');
+    localStorage.removeItem('auth-data');
   };
 
   return (

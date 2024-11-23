@@ -123,8 +123,8 @@ public class UsersController {
     public CompletableFuture<ResponseEntity<?>> loginUser(@Valid @RequestParam("name") String name,
                                                           @Valid @RequestParam("password") String password) {
         return usersService.loginUser(name, password)
-                .thenApply(user -> user.map(u -> ResponseEntity.ok("Successfully login"))
-                        .orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect username or password")));
+                .thenApply(user -> user.map(u -> ResponseEntity.ok(user))
+                        .orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(user)));
     }
 
     /**
@@ -215,7 +215,7 @@ public class UsersController {
      * This method is handler of MethodArgumentNotValidException.
      *
      * @param exception MethodArgumentNotValidException.
-     * @return NO_CONTENT (204) or BAD_REQUEST (400).
+     * @return BAD_REQUEST (400).
      */
     @Operation(summary = "Не валидные входные данные")
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -235,7 +235,7 @@ public class UsersController {
      * This method is handler of UsersException.
      *
      * @param exception UsersException.
-     * @return NO_CONTENT (204) or BAD_REQUEST (400).
+     * @return BAD_REQUEST (400).
      */
     @Operation(summary = "Ошибка пользовательского интерфейса")
     @ResponseStatus(HttpStatus.BAD_REQUEST)

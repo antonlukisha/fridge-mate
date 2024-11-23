@@ -7,6 +7,7 @@ import Budget from '../pages/Budget';
 import Account from '../pages/Account';
 import Logout from '../pages/Logout';
 import Auth from '../pages/Auth';
+import LoginPage from '../pages/LoginPage';
 import Error from '../pages/Error';
 
 const routes = [
@@ -45,6 +46,10 @@ const routes = [
   {
     path: '/logout',
     element: <Logout />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
   {
     path: '*',
