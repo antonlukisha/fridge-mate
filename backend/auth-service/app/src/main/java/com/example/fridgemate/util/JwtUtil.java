@@ -6,11 +6,29 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
 
 public class JwtUtil {
 
-    private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final String KEY_FILE = "src/main/resources/keys/secret-key.dat";
+    private static final SecretKey SECRET_KEY;
+
+    static {
+        try {
+            SECRET_KEY = loadKey();
+        } catch (IOException | ClassNotFoundException exception) {
+            throw new RuntimeException("Failed to load secret key", exception);
+        }
+    }
+
+    private static SecretKey loadKey() throws IOException, ClassNotFoundException {
+        byte[] keyBytes = Files.readAllBytes(Paths.get(KEY_FILE));
+        return new SecretKeySpec(keyBytes, "HmacSHA256");
+    }
 
     public static String generateToken(String username) {
         return Jwts.builder()

@@ -81,6 +81,21 @@ public class UsersController {
     }
 
     /**
+     * METHOD GET: getByToken.
+     * This method send response which get user by token.
+     *
+     * @param token Email of user.
+     * @return OK (200) or NO_CONTENT (204).
+     */
+    @Operation(summary = "Получение данных пользователя по токен")
+    @GetMapping("/token")
+    public CompletableFuture<ResponseEntity<?>> getByToken(@Valid @RequestParam("token") String token) {
+        return usersService.findUserByToken(token)
+                .thenApply(user -> user.map(ResponseEntity::ok)
+                        .orElseGet(() -> ResponseEntity.noContent().build()));
+    }
+
+    /**
      * METHOD POST: registerUser.
      * This method send response after registration of user.
      *
@@ -122,7 +137,7 @@ public class UsersController {
     @PutMapping("/verified")
     public CompletableFuture<ResponseEntity<?>> verifiedUser(@Valid @RequestParam("token") String token) {
         return usersService.updateVerifiedStatus(token, true)
-                .thenApply(result -> ResponseEntity.ok().build());
+                .thenApply(result -> ResponseEntity.ok("Successfully confirm"));
     }
 
     /**
@@ -149,6 +164,20 @@ public class UsersController {
     @DeleteMapping("/id")
     public CompletableFuture<ResponseEntity<?>> deleteUserById(@Valid @RequestParam("id") Long id) {
         return usersService.deleteUserById(id)
+                .thenApply(result -> ResponseEntity.noContent().build());
+    }
+
+    /**
+     * METHOD DELETE: deleteUserByToken.
+     * This method send response after deleted of user by token.
+     *
+     * @param token Identity of token.
+     * @return NO_CONTENT (204).
+     */
+    @Operation(summary = "Удаление пользователя по его токену")
+    @DeleteMapping("/token")
+    public CompletableFuture<ResponseEntity<?>> deleteUserByToken(@Valid @RequestParam("token") String token) {
+        return usersService.deleteUserByToken(token)
                 .thenApply(result -> ResponseEntity.noContent().build());
     }
 

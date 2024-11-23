@@ -184,7 +184,11 @@ public class UsersService {
                 logger.error("Incorrect token for change verified");
                 throw new UsersException("Incorrect token.");
             }
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-token: " + token);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-token: " + token);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findByToken(token);
                 gotUser.ifPresent(user -> {
@@ -219,7 +223,11 @@ public class UsersService {
                 logger.error("Incorrect email");
                 throw new UsersException("Incorrect email.");
             }
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-email: " + email);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-email: " + email);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findByEmail(email);
                 gotUser.ifPresent(user -> {
@@ -247,7 +255,11 @@ public class UsersService {
                 logger.error("Incorrect token");
                 throw new UsersException("Incorrect token.");
             }
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-token: " + token);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-token: " + token);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findByToken(token);
                 gotUser.ifPresent(user -> {
@@ -275,7 +287,11 @@ public class UsersService {
                 logger.error("Incorrect username");
                 throw new UsersException("Incorrect username.");
             }
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-username: " + username);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-username: " + username);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findByUsername(username);
                 gotUser.ifPresent(user -> {
@@ -299,7 +315,11 @@ public class UsersService {
      */
     public CompletableFuture<Optional<UsersEntity>> findUserById(Long id) {
         return CompletableFuture.supplyAsync(() -> {
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-id: " + id);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-id: " + id);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findById(id);
                 gotUser.ifPresent(user -> {
@@ -363,7 +383,11 @@ public class UsersService {
      */
     public CompletableFuture<Void> deleteUserById(Long id) {
         return CompletableFuture.runAsync(() -> {
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-id: " + id);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-id: " + id);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findById(id);
                 gotUser.ifPresent(user -> {
@@ -395,7 +419,11 @@ public class UsersService {
                 logger.error("Incorrect username for delete");
                 throw new UsersException("Incorrect username.");
             }
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-username: " + username);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-username: " + username);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findByUsername(username);
                 gotUser.ifPresent(user -> {
@@ -428,7 +456,11 @@ public class UsersService {
                 logger.error("Incorrect email for delete");
                 throw new UsersException("Incorrect email.");
             }
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-email: " + email);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-email: " + email);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findByEmail(email);
                 gotUser.ifPresent(user -> {
@@ -461,7 +493,11 @@ public class UsersService {
                 logger.error("Incorrect token for delete");
                 throw new UsersException("Incorrect token.");
             }
-            UsersEntity cachedUser = (UsersEntity) redisTemplate.opsForValue().get("user-by-token: " + token);
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-token: " + token);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
             if (cachedUser == null) {
                 Optional<UsersEntity> gotUser = usersRepository.findByToken(token);
                 gotUser.ifPresent(user -> {
