@@ -449,6 +449,14 @@ input {
 
 }
 
+/*========== 3. Message ==========*/
+.warn-message {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #e60000;
+}
+
 /************************************
  *            Pagination            *
  ************************************/

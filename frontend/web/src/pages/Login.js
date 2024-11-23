@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
-import api from '../api/ApiClient';
+import api from '../api/api';
 import AuthContext from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [user, setUser] = useState('');
+  const [repeat, setRepeat] = useState(false);
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -12,14 +13,14 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.post('/users/login', { user, password });
-      if (response.status !== 200) {
-        return;
-      }
+      const response = await api.post(`/users/login?name=${ user }&password=${ password }`, user, password);
       const { token, username, email } = response.data;
       login( username, email, token );
       navigate('/');
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        setRepeat(true);
+      }
       console.error('Login error:', error);
     }
 
@@ -44,6 +45,9 @@ function Login() {
           className="form-input"
           required
         />
+        {repeat && (<div className="warn-message">
+            Повторите попытку
+          </div>)}
         <button
           className="dark-button"
           type="submit"

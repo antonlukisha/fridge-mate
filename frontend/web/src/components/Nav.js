@@ -37,7 +37,7 @@ const Nav = () => {
             { auth.auth ? (
               <>
                 <li><Link to="/me"><AccountCircle />{auth.username}</Link></li>
-                <li><Link to="/logout" onClick={logout}><Logout />Выход</Link></li>
+                <li><Link to="/auth" onClick={logout}><Logout />Выход</Link></li>
               </>
             ) : (
               <li><Link to="/auth"><Logout />Вход</Link></li>

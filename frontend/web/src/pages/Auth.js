@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header'
-import apiClient from '../api/ApiClient';
+import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
