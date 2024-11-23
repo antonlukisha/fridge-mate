@@ -199,6 +199,7 @@ public class UsersService {
                     redisTemplate.opsForValue().set("user-by-email: " + user.getEmail(), user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-token: " + token, user, 24, TimeUnit.HOURS);
                 });
+                logger.info("Successfully confirm");
                 return;
             }
             cachedUser.setVerified(verified);
@@ -207,6 +208,7 @@ public class UsersService {
             redisTemplate.opsForValue().set("user-by-username: " + cachedUser.getUsername(), cachedUser, 24, TimeUnit.HOURS);
             redisTemplate.opsForValue().set("user-by-email: " + cachedUser.getEmail(), cachedUser, 24, TimeUnit.HOURS);
             redisTemplate.opsForValue().set("user-by-token: " + token, cachedUser, 24, TimeUnit.HOURS);
+            logger.info("Successfully confirm");
         });
     }
 
@@ -235,9 +237,12 @@ public class UsersService {
                     redisTemplate.opsForValue().set("user-by-username: " + user.getUsername(), user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-email: " + email, user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-token: " + user.getToken(), user, 24, TimeUnit.HOURS);
+                    logger.info("User {} found", user.getUserId());
                 });
+
                 return gotUser;
             }
+            logger.info("User {} found", cachedUser.getUserId());
             return Optional.of(cachedUser);
         }, executor);
     }
@@ -267,9 +272,11 @@ public class UsersService {
                     redisTemplate.opsForValue().set("user-by-username: " + user.getUsername(), user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-email: " + user.getEmail(), user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-token: " + token, user, 24, TimeUnit.HOURS);
+                    logger.info("User {} found", user.getUserId());
                 });
                 return gotUser;
             }
+            logger.info("User {} found", cachedUser.getUserId());
             return Optional.of(cachedUser);
         }, executor);
     }
@@ -299,9 +306,11 @@ public class UsersService {
                     redisTemplate.opsForValue().set("user-by-username: " + username, user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-email: " + user.getEmail(), user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-token: " + user.getToken(), user, 24, TimeUnit.HOURS);
+                    logger.info("User {} found", user.getUserId());
                 });
                 return  gotUser;
             }
+            logger.info("User {} found", cachedUser.getUserId());
             return Optional.of(cachedUser);
         }, executor);
     }
@@ -327,9 +336,11 @@ public class UsersService {
                     redisTemplate.opsForValue().set("user-by-username: " + user.getUsername(), user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-email: " + user.getEmail(), user, 24, TimeUnit.HOURS);
                     redisTemplate.opsForValue().set("user-by-token: " + user.getToken(), user, 24, TimeUnit.HOURS);
+                    logger.info("User {} found", user.getUserId());
                 });
                 return gotUser;
             }
+            logger.info("User {} found", cachedUser.getUserId());
             return Optional.of(cachedUser);
         }, executor);
     }
