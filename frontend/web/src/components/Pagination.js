@@ -29,7 +29,6 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage, entries, setEntri
         {Array.from({ length: totalPages }, (_, index) => (
           <a
             key={index}
-            href="#"
             className={currentPage === index + 1 ? 'active' : ''}
             onClick={() => handlePageChange(index + 1)}
           >

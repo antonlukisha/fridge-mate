@@ -11,7 +11,7 @@ const ShopList = ({ items, setItems }) => {
 
   return (
     <ul className="shop-list">
-    {items.length == 0 && "Список пуст"}
+    {items.length === 0 && "Список пуст"}
       {items.map((item) => (
       <li
         key={item.id}

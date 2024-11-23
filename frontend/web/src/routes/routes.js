@@ -5,9 +5,8 @@ import ShoppingList from '../pages/ShoppingList';
 import Notifications from '../pages/Notifications';
 import Budget from '../pages/Budget';
 import Account from '../pages/Account';
-import Login from '../pages/Login';
 import Logout from '../pages/Logout';
-import Register from '../pages/Register';
+import Auth from '../pages/Auth';
 import Error from '../pages/Error';
 
 const routes = [
@@ -40,16 +39,12 @@ const routes = [
     element: <Account />,
   },
   {
-    path: '/login',
-    element: <Login />,
+    path: '/auth',
+    element: <Auth />,
   },
   {
     path: '/logout',
     element: <Logout />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
   },
   {
     path: '*',

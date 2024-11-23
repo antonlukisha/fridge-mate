@@ -20,10 +20,9 @@ const Fridge = () => {
     { id: 9, name: 'Молоко Ряженка', type: 'Молоко', quantity: '100 мл', status: 'Свежий', addedDate: '29 Июл 2023' },
     { id: 10, name: 'Яблоки', type: 'Фрукты', quantity: '1 кг', status: 'Просроченный', addedDate: '01 Авг 2023' },
     { id: 11, name: 'Сыр', type: 'Молочные продукты', quantity: '200 г', status: 'Истекает срок', addedDate: '15 Ноя 2023' },
-    { id: 12, name: 'Хлеб', type: 'Хлебобулочные изделия', quantity: '1 шт', status: 'Свежий', addedDate: '18 Ноя 2023' },
+    { id: 12, name: 'Хлеб', type: 'Хлебобулочные изделия', quantity: '1 шт', status: 'Свежий', addedDate: '18 Ноя 2024' },
   ];
 
-  const [products, setProducts] = useState(initialProducts);
   const [searchInput, setSearchInput] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
   const [entries, setEntries] = useState(5);

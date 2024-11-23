@@ -20,7 +20,6 @@ const Notifications = () => {
     { id: 10, message: 'Добавьте больше молочных продуктов', type: 'Info', date: '16 Ноя 2024' },
   ];
 
-  const [notifications, setNotifications] = useState(initialNotifications);
   const [activeFilter, setActiveFilter] = useState('All');
   const [entries, setEntries] = useState(5);
   const {currentPage, setCurrentPage} = usePagination();

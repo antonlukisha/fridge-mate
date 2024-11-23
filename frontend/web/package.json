@@ -7,14 +7,13 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.1.7",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -40,5 +39,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "postcss": "^8.4.49",
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.81.0",
+    "source-map-loader": "^5.0.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.96.1",
+    "webpack-dev-server": "^5.1.0"
   }
 }

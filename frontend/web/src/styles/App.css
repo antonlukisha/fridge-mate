@@ -104,6 +104,10 @@ section {
   overflow: hidden;
 }
 
+.frame {
+  padding: 18px 22px;
+}
+
 /*========== 3. Headers ==========*/
 .header {
   display: flex;
@@ -125,12 +129,27 @@ h3 {
 
 }
 
+/*========== 4. Links ==========*/
+
+a {
+  text-decoration: none;
+}
+
 /****************************************
  *             Shoping List             *
  ****************************************/
 .shop-list {
   font-size: 16px;
   font-weight: bold;
+}
+
+/*********************************
+ *             Grid             *
+ *********************************/
+.grid-four-four {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 /*********************************
@@ -148,7 +167,6 @@ li {
 
 li a {
   padding: 10px 15px;
-  text-decoration: none;
   color: #343a40;
   display: flex;
   align-items: center;
@@ -230,7 +248,7 @@ th:last-child {
 }
 
 /*********************************
- *             Search            *
+ *             Input            *
  *********************************/
 /*========== 1. Search Bar ==========*/
 .search-bar {
@@ -238,7 +256,7 @@ th:last-child {
   gap: 10px;
 }
 
-.search-bar input {
+input {
   font-family: "Manrope", sans-serif;
   color: #6c757d;
   padding: 6px 12px;
@@ -253,6 +271,11 @@ th:last-child {
   display: flex;
   position: relative;
   font-size: 12px;
+}
+
+/*========== 3. Form Input ==========*/
+.form-input {
+  font-size: 16px;
 }
 
 /********************************
@@ -324,6 +347,35 @@ th:last-child {
   color: #9A55FF;
 }
 
+.dark-button-auth {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  color: #212529;
+  font-size: 26px;
+  background-color: #FFF;
+  padding: 8px 16px;
+  border: none;
+  border-bottom-color: #212529;
+  border-bottom: 4px solid;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dark-button-auth.active {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  color: #9A55FF;
+  background-color: #fff;
+  font-size: 26px;
+  padding: 8px 16px;
+  border: none;
+  border-bottom-color: #9A55FF;
+  border-bottom: 4px solid;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
 /*========== 3. Light Button ==========*/
 .light-button {
   font-family: "Manrope", sans-serif;
@@ -365,13 +417,13 @@ th:last-child {
 
 .status.expired {
   background-color: #ffe6e6;
-  color: #e60000;  
+  color: #e60000;
 }
 
 .status.missing {
   background-color: #fffacd;
   color: #b58900;
-    
+
 }
 
 /*========== 2. Type ==========*/
@@ -388,13 +440,13 @@ th:last-child {
 
 .type.error {
   background-color: #ffe6e6;
-  color: #e60000;  
+  color: #e60000;
 }
 
 .type.warning {
   background-color: #fffacd;
   color: #b58900;
-    
+
 }
 
 /************************************
@@ -409,10 +461,15 @@ th:last-child {
 
 .page-numbers a {
   margin: 0 5px;
-  text-decoration: none;
-  color: #6a0dad;
+  color: #6c757d;
   padding: 5px 10px;
   border-radius: 5px;
+  font-weight: normal;
+}
+
+.page-numbers a.active {
+  font-weight: bold;
+  color: #9A55FF;
 }
 
 .page-numbers a:hover {
@@ -460,4 +517,3 @@ th:last-child {
   font-weight: bold;
   font-family: "Manrope", sans-serif;
 }
-

@@ -6,7 +6,7 @@ const Note = ({ note, setNote, items, setItems }) => {
   };
 
   const handleEntry = () => {
-    if (note == '' || note.includes('\n') || note.length > 20) return;
+    if (note === '' || note.includes('\n') || note.length > 20) return;
     setItems((prevItems) => [...prevItems, { id: note.length + 1, name: note, bought: false }]);
     setNote('');
   };

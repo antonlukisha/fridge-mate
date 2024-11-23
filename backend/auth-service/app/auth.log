@@ -1,0 +1,180 @@
+2024-11-23T20:58:25.165+07:00  INFO 34528 --- [auth-service] [restartedMain] c.e.fridgemate.AuthServiceApplication    : Starting AuthServiceApplication using Java 22.0.1 with PID 34528 (C:\FridgeMate\backend\auth-service\app\target\classes started by Tony in C:\FridgeMate\backend\auth-service\app)
+2024-11-23T20:58:25.168+07:00 DEBUG 34528 --- [auth-service] [restartedMain] c.e.fridgemate.AuthServiceApplication    : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-11-23T20:58:25.170+07:00  INFO 34528 --- [auth-service] [restartedMain] c.e.fridgemate.AuthServiceApplication    : No active profile set, falling back to 1 default profile: "default"
+2024-11-23T20:58:25.254+07:00  INFO 34528 --- [auth-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-23T20:58:25.255+07:00  INFO 34528 --- [auth-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-23T20:58:26.786+07:00  INFO 34528 --- [auth-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-23T20:58:26.788+07:00  INFO 34528 --- [auth-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-23T20:58:26.982+07:00  INFO 34528 --- [auth-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 183 ms. Found 1 JPA repository interface.
+2024-11-23T20:58:27.021+07:00  INFO 34528 --- [auth-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-23T20:58:27.022+07:00  INFO 34528 --- [auth-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-23T20:58:27.042+07:00  INFO 34528 --- [auth-service] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.fridgemate.repository.UsersRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-23T20:58:27.042+07:00  INFO 34528 --- [auth-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2024-11-23T20:58:28.185+07:00  INFO 34528 --- [auth-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8085 (http)
+2024-11-23T20:58:28.211+07:00  INFO 34528 --- [auth-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-23T20:58:28.212+07:00  INFO 34528 --- [auth-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-23T20:58:28.309+07:00  INFO 34528 --- [auth-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-23T20:58:28.310+07:00  INFO 34528 --- [auth-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3053 ms
+2024-11-23T20:58:28.579+07:00  INFO 34528 --- [auth-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-23T20:58:28.704+07:00  INFO 34528 --- [auth-service] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-23T20:58:28.772+07:00  INFO 34528 --- [auth-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-23T20:58:29.286+07:00  INFO 34528 --- [auth-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-23T20:58:29.328+07:00  INFO 34528 --- [auth-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-23T20:58:29.609+07:00  INFO 34528 --- [auth-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@47dc4cdc
+2024-11-23T20:58:29.611+07:00  INFO 34528 --- [auth-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-23T20:58:30.711+07:00  INFO 34528 --- [auth-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-23T20:58:30.783+07:00  INFO 34528 --- [auth-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-23T20:58:32.789+07:00  INFO 34528 --- [auth-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8085 (http) with context path '/'
+2024-11-23T20:58:32.802+07:00  INFO 34528 --- [auth-service] [restartedMain] c.e.fridgemate.AuthServiceApplication    : Started AuthServiceApplication in 8.389 seconds (process running for 9.537)
+2024-11-23T21:00:41.454+07:00  INFO 34528 --- [auth-service] [http-nio-8085-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-23T21:00:41.455+07:00  INFO 34528 --- [auth-service] [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-23T21:00:41.456+07:00  INFO 34528 --- [auth-service] [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-23T21:00:42.106+07:00  INFO 34528 --- [auth-service] [usersTask-1] c.e.fridgemate.service.UsersService      : Successfully registered user: Username: admin, Email: user@example.com
+2024-11-23T21:00:42.232+07:00 ERROR 34528 --- [auth-service] [http-nio-8085-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] threw exception
+
+redis.clients.jedis.exceptions.JedisDataException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+	at redis.clients.jedis.Protocol.processError(Protocol.java:107) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.process(Protocol.java:155) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.read(Protocol.java:218) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:361) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.getOne(Connection.java:343) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.executeCommand(Connection.java:148) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Jedis.setex(Jedis.java:927) ~[jedis-5.2.0-beta4.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker.lambda$from$20(JedisInvoker.java:305) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$doInvoke$2(JedisConnection.java:228) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doWithJedis(JedisConnection.java:710) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doInvoke(JedisConnection.java:212) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$new$0(JedisConnection.java:109) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$Synchronizer.invoke(JedisInvoker.java:1035) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$DefaultSingleInvocationSpec.getOrElse(JedisInvoker.java:949) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisStringCommands.setEx(JedisStringCommands.java:140) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.DefaultedRedisConnection.setEx(DefaultedRedisConnection.java:340) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.potentiallyUsePsetEx(DefaultValueOperations.java:265) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.doInRedis(DefaultValueOperations.java:258) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:411) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:378) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:253) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at com.example.fridgemate.service.UsersService.lambda$registerUser$0(UsersService.java:72) ~[classes/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-11-23T21:00:42.240+07:00 ERROR 34528 --- [auth-service] [http-nio-8085-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.InvalidDataAccessApiUsageException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.] with root cause
+
+redis.clients.jedis.exceptions.JedisDataException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+	at redis.clients.jedis.Protocol.processError(Protocol.java:107) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.process(Protocol.java:155) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.read(Protocol.java:218) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:361) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.getOne(Connection.java:343) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.executeCommand(Connection.java:148) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Jedis.setex(Jedis.java:927) ~[jedis-5.2.0-beta4.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker.lambda$from$20(JedisInvoker.java:305) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$doInvoke$2(JedisConnection.java:228) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doWithJedis(JedisConnection.java:710) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doInvoke(JedisConnection.java:212) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$new$0(JedisConnection.java:109) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$Synchronizer.invoke(JedisInvoker.java:1035) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$DefaultSingleInvocationSpec.getOrElse(JedisInvoker.java:949) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisStringCommands.setEx(JedisStringCommands.java:140) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.DefaultedRedisConnection.setEx(DefaultedRedisConnection.java:340) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.potentiallyUsePsetEx(DefaultValueOperations.java:265) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.doInRedis(DefaultValueOperations.java:258) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:411) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:378) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:253) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at com.example.fridgemate.service.UsersService.lambda$registerUser$0(UsersService.java:72) ~[classes/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-11-23T21:01:00.874+07:00  INFO 34528 --- [auth-service] [usersTask-2] c.e.fridgemate.service.UsersService      : Successfully registered user: Username: admin, Email: user@example.com
+2024-11-23T21:01:00.876+07:00 ERROR 34528 --- [auth-service] [http-nio-8085-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] threw exception
+
+redis.clients.jedis.exceptions.JedisDataException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+	at redis.clients.jedis.Protocol.processError(Protocol.java:107) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.process(Protocol.java:155) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.read(Protocol.java:218) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:361) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.getOne(Connection.java:343) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.executeCommand(Connection.java:148) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Jedis.setex(Jedis.java:927) ~[jedis-5.2.0-beta4.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker.lambda$from$20(JedisInvoker.java:305) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$doInvoke$2(JedisConnection.java:228) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doWithJedis(JedisConnection.java:710) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doInvoke(JedisConnection.java:212) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$new$0(JedisConnection.java:109) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$Synchronizer.invoke(JedisInvoker.java:1035) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$DefaultSingleInvocationSpec.getOrElse(JedisInvoker.java:949) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisStringCommands.setEx(JedisStringCommands.java:140) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.DefaultedRedisConnection.setEx(DefaultedRedisConnection.java:340) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.potentiallyUsePsetEx(DefaultValueOperations.java:265) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.doInRedis(DefaultValueOperations.java:258) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:411) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:378) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:253) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at com.example.fridgemate.service.UsersService.lambda$registerUser$0(UsersService.java:72) ~[classes/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-11-23T21:01:00.876+07:00 ERROR 34528 --- [auth-service] [http-nio-8085-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.InvalidDataAccessApiUsageException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.] with root cause
+
+redis.clients.jedis.exceptions.JedisDataException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+	at redis.clients.jedis.Protocol.processError(Protocol.java:107) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.process(Protocol.java:155) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.read(Protocol.java:218) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:361) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.getOne(Connection.java:343) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.executeCommand(Connection.java:148) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Jedis.setex(Jedis.java:927) ~[jedis-5.2.0-beta4.jar:na]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker.lambda$from$20(JedisInvoker.java:305) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$doInvoke$2(JedisConnection.java:228) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doWithJedis(JedisConnection.java:710) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.doInvoke(JedisConnection.java:212) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisConnection.lambda$new$0(JedisConnection.java:109) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$Synchronizer.invoke(JedisInvoker.java:1035) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisInvoker$DefaultSingleInvocationSpec.getOrElse(JedisInvoker.java:949) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.jedis.JedisStringCommands.setEx(JedisStringCommands.java:140) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.connection.DefaultedRedisConnection.setEx(DefaultedRedisConnection.java:340) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.potentiallyUsePsetEx(DefaultValueOperations.java:265) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations$8.doInRedis(DefaultValueOperations.java:258) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:411) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:378) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:253) ~[spring-data-redis-3.3.5.jar:3.3.5]
+	at com.example.fridgemate.service.UsersService.lambda$registerUser$0(UsersService.java:72) ~[classes/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-11-23T21:01:01.526+07:00  WARN 34528 --- [auth-service] [commons-pool-evictor] redis.clients.jedis.JedisFactory         : Error while validating pooled Jedis object.
+
+redis.clients.jedis.exceptions.JedisDataException: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+	at redis.clients.jedis.Protocol.processError(Protocol.java:107) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.process(Protocol.java:155) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Protocol.read(Protocol.java:218) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:361) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:279) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.Jedis.ping(Jedis.java:340) ~[jedis-5.2.0-beta4.jar:na]
+	at redis.clients.jedis.JedisFactory.validateObject(JedisFactory.java:198) ~[jedis-5.2.0-beta4.jar:na]
+	at org.apache.commons.pool2.impl.GenericObjectPool.evict(GenericObjectPool.java:748) ~[commons-pool2-2.12.0.jar:2.12.0]
+	at org.apache.commons.pool2.impl.BaseGenericObjectPool$Evictor.run(BaseGenericObjectPool.java:162) ~[commons-pool2-2.12.0.jar:2.12.0]
+	at org.apache.commons.pool2.impl.EvictionTimer$WeakRunner.run(EvictionTimer.java:115) ~[commons-pool2-2.12.0.jar:2.12.0]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-11-23T21:02:17.040+07:00  INFO 34528 --- [auth-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-23T21:02:17.052+07:00  INFO 34528 --- [auth-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-23T21:02:17.058+07:00  INFO 34528 --- [auth-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

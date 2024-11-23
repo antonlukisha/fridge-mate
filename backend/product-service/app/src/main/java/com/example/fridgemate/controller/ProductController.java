@@ -56,7 +56,7 @@ public class ProductController {
                 .thenApply(products -> products.isEmpty() ? ResponseEntity.ok(products) : ResponseEntity.noContent().build());
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public  CompletableFuture<ResponseEntity<?>> addProduct(@Valid @RequestBody ProductEntity product) {
         return productService.addProduct(product)
                 .thenApply(createdProduct -> ResponseEntity.ok("Product created with ID: " + createdProduct.getId()));
