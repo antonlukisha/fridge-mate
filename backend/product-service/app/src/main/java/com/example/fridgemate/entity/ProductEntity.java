@@ -18,8 +18,8 @@ public class ProductEntity {
     private Long id;
 
     @NotBlank(message = "Field cannot be empty")
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "token", nullable = false)
+    private Long token;
 
     @NotBlank(message = "Field cannot be empty")
     @Size(max = 30, message = "Product type should be not more 30 characters")
