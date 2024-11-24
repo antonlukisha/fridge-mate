@@ -9,6 +9,7 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState(false);
+  const [pleaseConfirm, setPleaseConfirm] = useState(false);
   const { register } = useContext(AuthContext);
 
   emailjs.init('_6ilxvs6JJUcODexn');
@@ -26,7 +27,7 @@ const Register = () => {
         'template_udwv5wj',
         params
       );
-
+      setPleaseConfirm(true);
       console.log('Email sent successfully!', result.text);
     } catch (error) {
       console.error('Error sending email:', error);
@@ -48,6 +49,7 @@ const Register = () => {
       console.log('Response data:', response.data);
       const { token, username: registeredUsername, email: registeredEmail } = response.data;
       register(registeredUsername, registeredEmail, token);
+      console.log('Email:', registeredEmail);
       sendConfirmEmail(registeredUsername, registeredEmail, token);
     } catch (error) {
       if (error.response && (error.response.status === 401 || error.response.status === 400)) {
@@ -87,6 +89,9 @@ const Register = () => {
         />
         {repeat && (<div className="warn-message">
             Повторите попытку
+          </div>)}
+        {pleaseConfirm && (<div className="ok-message">
+            Подтвердите вашу электронную почту
           </div>)}
         <button
           className="dark-button"

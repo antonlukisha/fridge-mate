@@ -457,6 +457,13 @@ input {
   color: #e60000;
 }
 
+.ok-message {
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #00a500;
+}
+
 /************************************
  *            Pagination            *
  ************************************/
