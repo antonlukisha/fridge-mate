@@ -16,7 +16,7 @@ const Nav = () => {
       </Link>
       <div className="pages">
         <div className="general">
-          { auth.auth &&
+          { (auth.auth && auth.confirm) &&
             <>
               <div className="general-label">
                 МЕНЮ
@@ -34,7 +34,7 @@ const Nav = () => {
             ЛИЧНЫЙ КАБИНЕТ
           </div>
           <ul className="general-nav">
-            { auth.auth ? (
+            { (auth.auth && auth.confirm) ? (
               <>
                 <li><Link to="/me"><AccountCircle />{auth.username}</Link></li>
                 <li><Link to="/auth" onClick={logout}><Logout />Выход</Link></li>

@@ -317,7 +317,7 @@ public class UsersService {
 
     /**
      * METHOD: findUserById.
-     * This method find and get users by id from db.
+     * This method find and get user by id from db.
      *
      * @param id Identity of user.
      * @return An optional {@link UsersEntity}.
@@ -387,7 +387,7 @@ public class UsersService {
 
     /**
      * METHOD: deleteUserById.
-     * This method delete users by id from db.
+     * This method delete user by id from db.
      *
      * @param id Identity of user.
      * @return A message confirming that user by id have been deleted.

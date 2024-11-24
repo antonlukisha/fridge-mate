@@ -8,6 +8,7 @@ import Account from '../pages/Account';
 import Logout from '../pages/Logout';
 import Auth from '../pages/Auth';
 import LoginPage from '../pages/LoginPage';
+import ConfirmPage from '../pages/ConfirmPage';
 import Error from '../pages/Error';
 
 const routes = [
@@ -26,6 +27,10 @@ const routes = [
   {
     path: '/recipes',
     element: <Recipes />,
+  },
+  {
+    path: '/confirm-email/:token',
+    element: <ConfirmPage />,
   },
   {
     path: '/notifications',

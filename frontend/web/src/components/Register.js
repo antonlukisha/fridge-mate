@@ -2,14 +2,36 @@ import React, { useState, useContext } from 'react';
 import api from '../api/api';
 import AuthContext from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import emailjs from 'emailjs-com';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState(false);
-  const navigate = useNavigate();
   const { register } = useContext(AuthContext);
+
+  emailjs.init('_6ilxvs6JJUcODexn');
+
+  const sendConfirmEmail = async (username, email, token) => {
+    try {
+      const params = {
+        to_name: username,
+        to_email: email,
+        message: `Здравствуйте, ${username}! Пожалуйста, подтвердите ваш email, перейдя по ссылке: http://localhost:3000/confirm-email/${token}`,
+      };
+
+      const result = await emailjs.send(
+        'service_nz52gpg',
+        'template_udwv5wj',
+        params
+      );
+
+      console.log('Email sent successfully!', result.text);
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,10 +45,10 @@ const Register = () => {
           'Content-Type': 'application/json',
         }
       });
-
+      console.log('Response data:', response.data);
       const { token, username: registeredUsername, email: registeredEmail } = response.data;
       register(registeredUsername, registeredEmail, token);
-      navigate('/login');
+      sendConfirmEmail(registeredUsername, registeredEmail, token);
     } catch (error) {
       if (error.response && (error.response.status === 401 || error.response.status === 400)) {
         setRepeat(true);

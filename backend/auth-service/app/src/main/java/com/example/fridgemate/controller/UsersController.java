@@ -106,7 +106,7 @@ public class UsersController {
     @PostMapping("/register")
     public CompletableFuture<ResponseEntity<?>> registerUser(@Valid @RequestBody UserDto dto) {
         return usersService.registerUser(dto)
-                .thenApply(user -> ResponseEntity.ok("User " + user.getUsername() + " successfully registered. Please confirm your email."));
+                .thenApply(ResponseEntity::ok);
     }
 
     /**

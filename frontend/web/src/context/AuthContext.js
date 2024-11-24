@@ -26,6 +26,11 @@ export const AuthProvider = ({ children }) => {
 	  localStorage.setItem('auth-data', JSON.stringify({ auth: true, confirm: false, username, email, token }));
 	};
 
+	const confirm = () => {
+    setAuth((prevState) => ({ ...prevState, confirm: true }));
+    const updatedAuth = { ...auth, confirm: true };
+    localStorage.setItem('auth-data', JSON.stringify(updatedAuth));
+  };
 
   const logout = () => {
     setAuth({ auth: false, confirm: false, username: '', email: '', token: '' });
@@ -33,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ auth, login, logout, register }}>
+    <AuthContext.Provider value={{ auth, login, logout, register, confirm }}>
       {children}
     </AuthContext.Provider>
   );

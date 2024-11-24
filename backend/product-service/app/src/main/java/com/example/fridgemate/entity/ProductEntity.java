@@ -17,32 +17,25 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Field cannot be empty")
     @Column(name = "token", nullable = false)
-    private Long token;
+    private String token;
 
-    @NotBlank(message = "Field cannot be empty")
-    @Size(max = 30, message = "Product type should be not more 30 characters")
-    @Column(name = "type", nullable = false)
-    private String type;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @NotBlank(message = "Field cannot be empty")
-    @FutureOrPresent(message = "Expiry date cannot be in the past")
+    @ManyToOne
+    @JoinColumn(name = "type_id", nullable = false)
+    private ProductTypeEntity type;
+
     @Column(name = "expiry_date", nullable = false)
     private LocalDate expiryDate;
 
-    @NotBlank(message = "Field cannot be empty")
-    @Min(value = 0)
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @NotBlank(message = "Field cannot be empty")
-    @PastOrPresent(message = "Added date cannot be in the future")
     @Column(name = "added_date", nullable = false)
     private LocalDate addedDate;
 
-    @NotBlank(message = "Field cannot be empty")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Amount must be greater than 0")
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 }
