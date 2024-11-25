@@ -23,7 +23,7 @@ const Nav = () => {
               </div>
               <ul className="general-nav">
                 <li><Link to="/fridge"><Dashboard />Холодильник</Link></li>
-                <li><Link to="/wish"><Assignment />Список покупок</Link></li>
+                <li><Link to="/wish" style={{fontSize: '17px'}}><Assignment />Список покупок</Link></li>
                 <li><Link to="/recipes"><Icecream />Рецепты</Link></li>
                 <li><Link to="/notifications"><Notifications />Уведомления</Link></li>
                 <li><Link to="/budget"><BarChart />Бюджет</Link></li>

@@ -70,10 +70,12 @@ canvas {
 .dashboard {
   background-color: #f8f9fa;
   padding: 22px 72px;
+  padding-bottom: 10%;
   display: flex;
 }
 
 .main {
+  padding: 5px;
   margin: 0 42px;
   margin-right: 0;
   width: 100%;
