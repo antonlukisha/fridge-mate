@@ -21,6 +21,7 @@ const Main = () => {
           <div className="main-header">
             FridgeMate
             <span className="main-span">Твой виртуальный холодильник </span>
+            <div className="divider"></div>
           </div>
           <div className="main-text">
             Приложение которое поможет вам эффективно управлять запасами своих продуктов, минимизировать их порчу, рационально готовить и планировать свой бюджет на покупку продуктов.
