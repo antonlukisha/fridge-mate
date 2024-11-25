@@ -6,6 +6,7 @@ import Pagination from '../components/Pagination';
 import Header from '../components/Header';
 import { useFilteredProducts } from '../hooks/useFilteredProducts';
 import { usePagination } from '../hooks/usePagination';
+import api from '../api/api';
 
 const Fridge = () => {
   const initialProducts = [
@@ -22,6 +23,7 @@ const Fridge = () => {
     { id: 11, name: 'Сыр', type: 'Молочные продукты', quantity: '200 г', status: 'Истекает срок', addedDate: '15 Ноя 2023' },
     { id: 12, name: 'Хлеб', type: 'Хлебобулочные изделия', quantity: '1 шт', status: 'Свежий', addedDate: '18 Ноя 2024' },
   ];
+
 
   const [searchInput, setSearchInput] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');

@@ -77,6 +77,11 @@ canvas {
   margin: 0 42px;
   margin-right: 0;
   width: 100%;
+  contain: content;
+}
+
+.main-container {
+  display: flex;
 }
 
 .container {
@@ -85,6 +90,25 @@ canvas {
   width: 100%;
   align-items: flex-start;
   gap: 20px;
+}
+
+.splash-container {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.art-container {
+  flex: 1;
+  width: 100%;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8%;
 }
 
 .box {
@@ -129,10 +153,44 @@ h3 {
 
 }
 
+.main-header {
+  font-family: "Manrope", sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-size: 58px;
+  line-height: 60px;
+  font-weight: 900;
+  color: #212529;
+}
+
+.main-span {
+  font-size: 20px;
+  font-weight: 100;
+}
+
 /*========== 4. Links ==========*/
 
 a {
   text-decoration: none;
+}
+
+/*========== 5. Text ==========*/
+
+.main-text {
+  font-family: "Manrope", sans-serif;
+  text-align: justify;
+  font-size: 13px;
+  font-weight: 400;
+  color: #212529;
+}
+
+.main-text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  padding: 100px 60px;
 }
 
 /****************************************
@@ -141,6 +199,99 @@ a {
 .shop-list {
   font-size: 16px;
   font-weight: bold;
+}
+
+/*********************************
+ *             Image             *
+ *********************************/
+
+ /*========== 1. Floating image ==========*/
+.floating-shape {
+  position: absolute;
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating-apple {
+  bottom: 5%;
+  left: 5%;
+  height: 20%;
+  animation-duration: 5.5s;
+}
+
+.floating-fridge {
+  left: 13%;
+  top: 25%;
+  height: 60%;
+  animation-duration: 8.3s;
+}
+
+.floating-notification {
+  top: 18%;
+  left: 28%;
+  height: 25%;
+  animation-duration: 7s;
+}
+
+.floating-sparkles {
+  bottom: 2%;
+  left: 0;
+  height: 95%;
+  animation-duration: 8s;
+}
+
+.floating-note {
+  top: 5%;
+  left: 0;
+  height: 40%;
+  animation-duration: 7.5s;
+}
+
+.floating-chupa-chups {
+  top: 5%;
+  left: 42%;
+  height: 20%;
+  animation-duration: 9s;
+}
+
+.floating-hamburger {
+  bottom: 10%;
+  left: 41%;
+  height: 30%;
+  animation-duration: 7.5s;
+}
+
+.floating-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  height: 7%;
+  opacity: 0.3;
+  animation-duration: 5s;
+  animation: shadow 4s ease-in-out infinite;
+}
+
+@keyframes shadow {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0.90, 0.90);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /*********************************

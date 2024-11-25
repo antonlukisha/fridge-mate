@@ -5,7 +5,6 @@ import ShoppingList from '../pages/ShoppingList';
 import Notifications from '../pages/Notifications';
 import Budget from '../pages/Budget';
 import Account from '../pages/Account';
-import Logout from '../pages/Logout';
 import Auth from '../pages/Auth';
 import LoginPage from '../pages/LoginPage';
 import ConfirmPage from '../pages/ConfirmPage';
@@ -47,10 +46,6 @@ const routes = [
   {
     path: '/auth',
     element: <Auth />,
-  },
-  {
-    path: '/logout',
-    element: <Logout />,
   },
   {
     path: '/login',
