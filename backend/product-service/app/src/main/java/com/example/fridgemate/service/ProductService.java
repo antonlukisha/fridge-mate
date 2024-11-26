@@ -7,14 +7,17 @@ import com.example.fridgemate.exception.ProductException;
 import com.example.fridgemate.repository.ProductRepository;
 import com.example.fridgemate.repository.ProductTypeRepository;
 import com.example.fridgemate.util.JwtUtil;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -50,10 +53,14 @@ public class ProductService {
      * @param dto Product's data.
      * @return {@link ProductEntity} or ProductException.
      */
+    @Transactional
     public CompletableFuture<ProductEntity> addProduct(String token, ProductDto dto) {
         return CompletableFuture.supplyAsync(() -> {
-            Optional<ProductTypeEntity> type = productTypeRepository.findById(dto.getTypeId());
-            if (!isValidProduct(dto) || type.isEmpty() || !isToken(token)) {
+            ProductTypeEntity type = productTypeRepository.findById(Long.parseLong(dto.getTypeId())).orElseThrow(() -> new ProductException("Invalid type ID"));
+            int quantity = Integer.parseInt(dto.getQuantity());
+            BigDecimal amount = new BigDecimal(dto.getAmount());
+            LocalDate expiryDate = LocalDate.parse(dto.getExpiryDate());
+            if (!isValidProduct(quantity, amount, expiryDate) || !isToken(token)) {
                 logger.error("Incorrect product data");
                 throw new ProductException("Incorrect product data.");
             }
@@ -61,10 +68,10 @@ public class ProductService {
             product.setToken(token);
             product.setName(dto.getName());
             product.setAddedDate(LocalDate.now());
-            product.setAmount(dto.getAmount());
-            product.setExpiryDate(dto.getExpiryDate());
-            product.setQuantity(dto.getQuantity());
-            product.setType(type.get());
+            product.setAmount(amount);
+            product.setExpiryDate(expiryDate);
+            product.setQuantity(quantity);
+            product.setType(type);
             ProductEntity savedProduct = productRepository.save(product);
             redisTemplate.opsForValue().set("product: " + savedProduct.getId(), savedProduct, 24, TimeUnit.HOURS);
             logger.info("Product added: Id: {}", savedProduct.getId());
@@ -138,13 +145,15 @@ public class ProductService {
      * METHOD: isValidProduct.
      * This method check validation of product.
      *
-     * @param product Product.
+     * @param quantity Product quantity.
+     * @param amount Product amount.
+     * @param expiryDate Product expiry date.
      * @return true if product is valid else false.
      */
-    private boolean isValidProduct(ProductDto product) {
-        return product.getQuantity() > 0
-                && product.getExpiryDate().isAfter(LocalDate.now())
-                && product.getAmount().compareTo(BigDecimal.ZERO) > 0;
+    private boolean isValidProduct(int quantity, BigDecimal amount, LocalDate expiryDate) {
+        return quantity > 0
+                && expiryDate.isAfter(LocalDate.now())
+                && amount.compareTo(BigDecimal.ZERO) > 0;
     }
 
     /**

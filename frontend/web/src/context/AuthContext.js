@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setAuth({ auth: false, confirm: false, username: '', email: '', token: '' });
     localStorage.removeItem('auth-data');
+		localStorage.removeItem('products');
   };
 
   return (

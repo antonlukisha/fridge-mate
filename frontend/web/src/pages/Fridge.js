@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductTable from '../components/ProductTable';
 import Filter from '../components/Filter';
@@ -7,8 +7,13 @@ import Header from '../components/Header';
 import { useFilteredProducts } from '../hooks/useFilteredProducts';
 import { usePagination } from '../hooks/usePagination';
 import api from '../api/api';
+import AuthContext from '../context/AuthContext';
 
 const Fridge = () => {
+  const initProducts = () => {
+    const response = api.get('/products/all');
+
+  }
   const initialProducts = [
     { id: 1, name: 'Молоко Ряженка', type: 'Молоко', quantity: '100 мл', status: 'Свежий', addedDate: '29 Июл 2023' },
     { id: 2, name: 'Яблоки', type: 'Фрукты', quantity: '1 кг', status: 'Просроченный', addedDate: '01 Авг 2023' },
@@ -24,14 +29,53 @@ const Fridge = () => {
     { id: 12, name: 'Хлеб', type: 'Хлебобулочные изделия', quantity: '1 шт', status: 'Свежий', addedDate: '18 Ноя 2024' },
   ];
 
-
+  const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
   const [entries, setEntries] = useState(5);
   const {currentPage, setCurrentPage} = usePagination();
   const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
 
-  const filteredProducts = useFilteredProducts(initialProducts, searchInput, activeFilter);
+  const fetchProducts = async () => {
+    try {
+      const cachedProducts = localStorage.getItem('products');
+
+      if (cachedProducts) {
+        setProducts(JSON.parse(cachedProducts));
+      } else {
+        const response = await api.get(`/products/all?token=${auth.token}`);
+        const gotProducts = response.data.map((item) => ({
+          id: item.id,
+          name: item.name,
+          type: item.type.name,
+          quantity: item.quantity + ' ' + item.type.quantityType,
+          status: () => {
+            let diff = Math.floor((new Date(item.expiryDate) - new Date()) / (1000*60*60*24));
+            if (diff > 1) return 'Свежий';
+            else if (diff > 0) return 'Истекает срок';
+            else return 'Просроченный';
+          },
+          addedDate: new Date(item.addedDate).toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+          })
+        }));
+
+        setProducts(gotProducts);
+        localStorage.setItem('products', JSON.stringify(gotProducts));
+      }
+    } catch (error) {
+      console.error('Products loading error:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const filteredProducts = useFilteredProducts(products, searchInput, activeFilter);
 
   const totalPages = Math.ceil(filteredProducts.length / entries);
   const currentProducts = filteredProducts.slice((currentPage - 1) * entries, currentPage * entries);

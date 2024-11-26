@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,7 +25,4 @@ public class ProductTypeEntity {
 
     @Column(name = "quantity_type", nullable = false)
     private String quantityType;
-
-    @OneToMany(mappedBy = "type")
-    private List<ProductEntity> products;
 }
