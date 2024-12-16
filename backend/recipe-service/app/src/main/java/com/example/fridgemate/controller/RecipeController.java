@@ -1,10 +1,8 @@
 package com.example.fridgemate.controller;
 
-import com.example.fridgemate.entity.RecipeEntity;
 import com.example.fridgemate.exception.RecipeException;
 import com.example.fridgemate.service.RecipeService;
-import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.validation.FieldError;
@@ -25,33 +23,59 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
+    /**
+     * METHOD GET: getAllRecipes.
+     * This method get all recipes.
+     *
+     * @return OK (200) or NO_CONTENT (204).
+     */
+    @Operation(summary = "Получить все рецепты")
     @GetMapping("/all")
     public CompletableFuture<ResponseEntity<?>> getAllRecipes() {
         return recipeService.getAllRecipes()
-                .thenApply(users -> users.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(users));
+                .thenApply(recipes -> recipes.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(recipes));
     }
 
+    /**
+     * METHOD GET: getByIdRecipes.
+     * This method send response which get recipe by id.
+     *
+     * @param id Identity of recipe.
+     * @return OK (200) or NO_CONTENT (204).
+     */
+    @Operation(summary = "Получить рецепт по идентификатору")
     @GetMapping("/id")
     public CompletableFuture<ResponseEntity<?>> getByIdRecipes(@RequestParam("id") Long id) {
         return recipeService.findRecipeById(id)
-                .thenApply(user -> user.map(ResponseEntity::ok)
+                .thenApply(recipe -> recipe.map(ResponseEntity::ok)
                         .orElseGet(() -> ResponseEntity.noContent().build()));
     }
 
+    //TODO: Integrate recommendation system for getting suggest recipes
+    /**
+     * METHOD GET: suggestRecipes.
+     * This method get all suggest recipes.
+     *
+     * @param token User's token.
+     * @return OK (200) or NO_CONTENT (204).
+     */
+    @Operation(summary = "Получить все рекомендованные рецепты для конкретного пользователя")
     @GetMapping("/suggest")
-    public CompletableFuture<ResponseEntity<?>> suggestRecipes() {
-        return recipeService.suggestRecipes()
-                .thenApply(users -> users.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(users));
+    public CompletableFuture<ResponseEntity<?>> suggestRecipes(@RequestParam("token") String token) {
+        return recipeService.suggestRecipes(token)
+                .thenApply(recipes -> recipes.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(recipes));
     }
 
-    @PostMapping("/new")
-    public CompletableFuture<ResponseEntity<?>> createNewRecipes(@Valid @RequestBody RecipeEntity newRecipe) {
-        return recipeService.postNewRecipe(newRecipe)
-                .thenApply(recipe -> ResponseEntity.ok("Recipe created with ID: " + recipe.getId()));
-    }
-
+    /**
+     * METHOD ExceptionHandler: handleRecipeValidationException.
+     * This method is handler of MethodArgumentNotValidException.
+     *
+     * @param exception MethodArgumentNotValidException.
+     * @return BAD_REQUEST (400).
+     */
+    @Operation(summary = "Не валидные входные данные")
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> UserValidationException(MethodArgumentNotValidException exception){
+    public ResponseEntity<Map<String, String>> handleRecipeValidationException(MethodArgumentNotValidException exception){
         Map<String, String> errors = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach(error -> {
             String name = ((FieldError)error).getField();
@@ -61,8 +85,16 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
+    /**
+     * METHOD ExceptionHandler: handleRecipeException.
+     * This method is handler of RecipeException.
+     *
+     * @param exception RecipeException.
+     * @return BAD_REQUEST (400).
+     */
+    @Operation(summary = "Ошибка интерфейса рецептов")
     @ExceptionHandler(RecipeException.class)
-    public ResponseEntity<String> handleUserRegistrationException(RecipeException exception){
+    public ResponseEntity<String> handleRecipeException(RecipeException exception){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
 }

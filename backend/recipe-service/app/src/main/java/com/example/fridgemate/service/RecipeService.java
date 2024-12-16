@@ -1,11 +1,12 @@
 package com.example.fridgemate.service;
 
 import com.example.fridgemate.entity.RecipeEntity;
-import com.example.fridgemate.exception.RecipeException;
 import com.example.fridgemate.repository.RecipeRepository;
+import com.example.fridgemate.util.JwtUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,79 +15,85 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 @Service
 public class RecipeService {
-
+    private static final Logger logger = LoggerFactory.getLogger(RecipeService.class);
     private final RecipeRepository recipeRepository;
     private final RedisTemplate<String, Object> redisTemplate;
-    private final KafkaTemplate<String, String> kafkaTemplate;
     private final Executor executor;
-
-    private static final Pattern INGREDIENT_PATTERN = Pattern.compile("^([\\w\\s]+([,;\\s]+[\\w\\s]+)*)$");
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository,
                          RedisTemplate<String, Object> redisTemplate,
-                         KafkaTemplate<String, String> kafkaTemplate,
                          @Qualifier("recipesExecutor") Executor executor) {
         this.recipeRepository = recipeRepository;
         this.redisTemplate = redisTemplate;
-        this.kafkaTemplate = kafkaTemplate;
         this.executor = executor;
     }
 
-    public CompletableFuture<List<RecipeEntity>> suggestRecipes() {
+    /**
+     * METHOD: suggestRecipes.
+     * This method get all suggest recipes for user.
+     *
+     * @return List of {@link RecipeEntity}.
+     */
+    public CompletableFuture<List<RecipeEntity>> suggestRecipes(String token) {
         return CompletableFuture.supplyAsync(() -> {
             List<RecipeEntity> availableRecipes = recipeRepository.findAll();
-            kafkaTemplate.send("recipe-topic", "Retrieved suggest recipes. Count: " + availableRecipes.size());
-            //получать через Gateway api рекомендации
+            logger.info("Retrieved suggest recipes. Count: {}", availableRecipes.size());
+            //TODO: Get throw Gateway api recommendations
             return availableRecipes;
         }, executor);
     }
 
+    /**
+     * METHOD: isToken.
+     * This method check validation of token.
+     *
+     * @param token Probable token.
+     * @return true if token is valid else false.
+     */
+    private Boolean isToken(String token) { return JwtUtil.validateToken(token); }
 
+    /**
+     * METHOD: getAllRecipes.
+     * This method get all recipes from db.
+     *
+     * @return List of {@link RecipeEntity}.
+     */
     public CompletableFuture<List<RecipeEntity>> getAllRecipes() {
         return CompletableFuture.supplyAsync(() -> {
             List<RecipeEntity> recipes = recipeRepository.findAll();
-            kafkaTemplate.send("recipe-topic", "Retrieved all recipes: Count: " + recipes.size());
+            logger.info("Retrieved all recipes: Count: {}", recipes.size());
             return recipes;
         }, executor);
     }
 
+    /**
+     * METHOD: findRecipeById.
+     * This method find and get recipe by id from db.
+     *
+     * @param id Identity of recipe.
+     * @return An optional {@link RecipeEntity}.
+     */
     public CompletableFuture<Optional<RecipeEntity>> findRecipeById(Long id) {
         return CompletableFuture.supplyAsync(() -> {
-            RecipeEntity cachedRecipe = (RecipeEntity) redisTemplate.opsForValue().get("recipe: " + id);
-            kafkaTemplate.send("recipe-topic", "Recipe found in cache");
+            RecipeEntity cachedRecipe = null;
+            Object cachedProductObj = redisTemplate.opsForValue().get("recipe: " + id);
+            if (cachedProductObj instanceof RecipeEntity) {
+                cachedRecipe = (RecipeEntity) cachedProductObj;
+            }
             if (cachedRecipe == null) {
                 Optional<RecipeEntity> gotRecipe = recipeRepository.findById(id);
                 gotRecipe.ifPresent(recipe -> {
                     redisTemplate.opsForValue().set("recipe: " + id, recipe, 24, TimeUnit.HOURS);
-                    kafkaTemplate.send("recipe-topic", "Retrieved recipe by ID: " + id + ", Name: " + recipe.getName());
+                    logger.info("Recipe {} found", recipe.getId());
                 });
                 return gotRecipe;
             }
-            kafkaTemplate.send("recipe-topic", "Retrieved recipe by ID: " + id + ", Name: " + cachedRecipe.getName());
+            logger.info("Recipe {} found", cachedRecipe.getId());
             return Optional.of(cachedRecipe);
-        }, executor);
-    }
-
-    private boolean isValidRecipe(RecipeEntity recipe) {
-        return INGREDIENT_PATTERN.matcher(recipe.getIngredients()).matches();
-    }
-
-    public CompletableFuture<RecipeEntity> postNewRecipe(RecipeEntity recipe) {
-        return CompletableFuture.supplyAsync(() -> {
-            if (isValidRecipe(recipe)) {
-                RecipeEntity savedRecipe = recipeRepository.save(recipe);
-                redisTemplate.opsForValue().set("recipe: " + savedRecipe.getId(), savedRecipe, 24, TimeUnit.HOURS);
-                kafkaTemplate.send("recipe-topic", "Saved recipe: " + savedRecipe.getId());
-                return savedRecipe;
-            } else {
-                kafkaTemplate.send("recipe-topic", "Incorrect recipes data");
-                throw new RecipeException("Incorrect recipes data.");
-            }
         }, executor);
     }
 }
