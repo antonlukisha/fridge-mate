@@ -8,7 +8,7 @@ import chupaChups from '../assets/chupa_chups.png';
 import hamburger from '../assets/hamburger.png';
 import shadow from '../assets/shadow.png';
 
-const FloatingShapes = () => {
+const Splash = () => {
   const shapes = [
     { id: 1, img: sparkles, alt: 'FridgeMate', className: 'floating-sparkles' },
     { id: 2, img: hamburger, alt: 'FridgeMate', className: 'floating-hamburger' },
@@ -37,4 +37,4 @@ const FloatingShapes = () => {
   );
 };
 
-export default FloatingShapes;
+export default Splash;

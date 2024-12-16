@@ -141,6 +141,22 @@ public class UsersController {
     }
 
     /**
+     * METHOD PUT: changePassword.
+     * This method change user's password.
+     *
+     * @param token User token.
+     * @param password New password.
+     * @return OK (200).
+     */
+    @Operation(summary = "Изменение пароля пользователя")
+    @PutMapping("/password")
+    public CompletableFuture<ResponseEntity<?>> changePassword(@Valid @RequestParam("token") String token,
+                                                               @Valid @RequestParam("password") String password) {
+        return usersService.updatePassword(token, password)
+                .thenApply(result -> ResponseEntity.ok("Successfully changed password"));
+    }
+
+    /**
      * METHOD DELETE: deleteAllUser.
      * This method send response after deleted of users.
      *

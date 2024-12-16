@@ -21,6 +21,7 @@ const ShopList = ({ items, setItems }) => {
         }}
       >
         <input
+          className="input-tick"
           type="checkbox"
           checked={item.bought}
           onChange={() => toggleBought(item.id)}

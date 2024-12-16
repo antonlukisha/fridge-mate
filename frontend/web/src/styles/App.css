@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Exo+2:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/*********************************
+ *             Color             *
+ *********************************/
+:root {
+  --color-viola: #9A55FF;
+  --color-light-viola: #E7D7FF;
+  --color-red: #E60000;
+  --color-light-red: #FFE6E6;
+  --color-yellow: #B58900;
+  --color-light-yellow: #FFFACD;
+  --color-green: #00A500;
+  --color-light-green: #E6FFE6;
+  --color-middle-grey: #6C757D;
+  --color-light-grey: #CED4DA;
+  --color-white: #FFFFFF;
+  --color-dark-white: #F8F9FA;
+  --color-black: #212529;
+  --color-light-black: #343A40;
+}
 
 /**************************************
  *             Navigation             *
@@ -8,7 +27,7 @@
   font-family: "Manrope", sans-serif;
   width: 260px;
   height: 532px;
-  background-color: #fff;
+  background-color: var(--color-white);
   padding: 16px 32px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -17,13 +36,13 @@
 .nav .logo {
   font-size: 16px;
   font-weight: bold;
-  color: #9A55FF;
+  color: var(--color-viola);
   display: flex;
   align-items: center;
 }
 
 .general-label {
-  color: #6c757d;
+  color: var(--color-middle-grey);
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 10px;
@@ -33,7 +52,7 @@
   margin: 0;
   font-size: 18px;
   font-weight: normal;
-  color: #212529;
+  color: var(--color-black);
   margin-bottom: 20px;
 }
 
@@ -58,17 +77,22 @@ canvas {
 .divider {
   width: 100%;
   height: 1.5px;
-  background-color: #ced4da;
+  background-color: var(--color-light-grey);
   margin: 10px 0;
 }
 
 .black-part {
-  color: #212529;
+  color: var(--color-black);
+}
+
+.bold-part {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 /*========== 2. Sections ==========*/
 .dashboard {
-  background-color: #f8f9fa;
+  background-color: var(--color-dark-white);
   padding: 22px 72px;
   padding-bottom: 10%;
   display: flex;
@@ -113,6 +137,15 @@ canvas {
   padding-top: 8%;
 }
 
+.art-container-account {
+  flex: 1;
+  width: 90%;
+  height: 140px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3%;
+}
+
 .box {
   display: flex;
   width: 33%;
@@ -121,7 +154,7 @@ canvas {
 
 section {
   font-family: "Manrope", sans-serif;
-  background-color: #fff;
+  background-color: var(--color-white);
   padding: 16px 24px;
   gap: 12px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -146,13 +179,18 @@ section {
   font-family: "Manrope", sans-serif;
   font-size: 32px;
   font-weight: bold;
-  color: #212529;
+  color: var(--color-black);
 }
 
 h3 {
   margin: 0;
-  color: #6c757d;
+  color: var(--color-middle-grey);
 
+}
+
+h4 {
+  font-weight: normal;
+  margin: 0;
 }
 
 .main-header {
@@ -162,13 +200,20 @@ h3 {
   font-size: 58px;
   line-height: 60px;
   font-weight: 900;
-  color: #212529;
+  color: var(--color-black);
 }
 
 .main-span {
   font-size: 20px;
   font-weight: 100;
-  color: #6c757d;
+  color: var(--color-middle-grey);
+}
+
+.upload-date {
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--color-middle-grey);
 }
 
 /*========== 4. Links ==========*/
@@ -184,7 +229,7 @@ a {
   text-align: justify;
   font-size: 13px;
   font-weight: 400;
-  color: #212529;
+  color: var(--color-black);
 }
 
 .main-text-section {
@@ -194,6 +239,24 @@ a {
   justify-content: center;
   gap: 25px;
   padding: 100px 60px;
+}
+
+.account-text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 60px;
+}
+
+.account-text {
+  font-size: 16px;
+  color: var(--color-black);
+  padding: 0 5px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 /****************************************
@@ -247,6 +310,13 @@ a {
   left: 0;
   height: 40%;
   animation-duration: 7.5s;
+}
+
+.floating-note-main {
+  left: 13%;
+  top: 0%;
+  height: 80%;
+  animation-duration: 8.3s;
 }
 
 .floating-chupa-chups {
@@ -321,7 +391,7 @@ li {
 
 li a {
   padding: 10px 15px;
-  color: #343a40;
+  color: var(--color-light-black);
   display: flex;
   align-items: center;
 }
@@ -331,11 +401,15 @@ li a svg {
 }
 
 li:hover {
-  background-color: #E7D7FF;
+  background-color: var(--color-light-viola);
 }
 
 li:hover a {
-  color: #9A55FF;
+  color: var(--color-viola);
+}
+
+.shop-list li {
+  padding: 10px 0;
 }
 
 .filter-field {
@@ -350,7 +424,7 @@ li:hover a {
 .tab-item {
   font-weight: bold;
   padding: 8px 16px;
-  border-bottom-color: #212529;
+  border-bottom-color: var(--color-black);
   border-bottom: 4px solid;
   cursor: pointer;
 }
@@ -358,18 +432,18 @@ li:hover a {
 .tab-item.active {
   font-weight: bold;
   padding: 8px 16px;
-  color: #9A55FF;
-  border-bottom-color: #9A55FF;
+  color: var(--color-viola);
+  border-bottom-color: var(--color-viola);
   border-bottom: 4px solid;
 }
 
 .tab-item:hover {
-  color: #9A55FF;
-  border-bottom-color: #9A55FF;
+  color: var(--color-viola);
+  border-bottom-color: var(--color-viola);
 }
 
 thead {
-  background-color: #E7D7FF;
+  background-color: var(--color-light-viola);
   border-radius: 5px;
 }
 
@@ -396,8 +470,9 @@ th:last-child {
 }
 
 .document-table th, .document-table td {
+    font-size: 12px;
     padding: 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-light-grey);
     text-align: left;
 }
 
@@ -412,9 +487,9 @@ th:last-child {
 
 input {
   font-family: "Manrope", sans-serif;
-  color: #6c757d;
+  color: var(--color-middle-grey);
   padding: 6px 12px;
-  border: 2px solid #ced4da;
+  border: 2px solid var(--color-light-grey);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   box-sizing: border-box;
@@ -432,6 +507,10 @@ input {
   font-size: 16px;
 }
 
+input[type="checkbox"] {
+  accent-color: var(--color-viola);
+}
+
 /********************************
  *             Note             *
  ********************************/
@@ -447,7 +526,7 @@ input {
 
 /*========== 2. Textarea ==========*/
 .note-textarea {
-  background-color: #E7D7FF;
+  background-color: var(--color-light-viola);
   width: 300px;
   padding: 12px;
   font-size: 16px;
@@ -470,8 +549,8 @@ input {
 .dark-input-button {
   font-family: "Manrope", sans-serif;
   font-weight: bold;
-  background-color: #9A55FF;
-  color: #f8f9fa;
+  background-color: var(--color-viola);
+  color: var(--color-dark-white);
   padding: 6px 12px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -480,16 +559,16 @@ input {
 }
 
 .dark-input-button:hover {
-  background-color: #E7D7FF;
-  color: #9A55FF;
+  background-color: var(--color-light-viola);
+  color: var(--color-viola);
 }
 
 /*========== 2. Dark Button ==========*/
 .dark-button {
   font-family: "Manrope", sans-serif;
   font-weight: bold;
-  background-color: #9A55FF;
-  color: #f8f9fa;
+  background-color: var(--color-viola);
+  color: var(--color-dark-white);
   padding: 8px 16px;
   border-radius: 5px;
   border: none;
@@ -497,19 +576,19 @@ input {
 }
 
 .dark-button:hover {
-  background-color: #E7D7FF;
-  color: #9A55FF;
+  background-color: var(--color-light-viola);
+  color: var(--color-viola);
 }
 
 .dark-button-auth {
   font-family: "Manrope", sans-serif;
   font-weight: bold;
-  color: #212529;
+  color: var(--color-black);
   font-size: 26px;
-  background-color: #FFF;
+  background-color: var(--color-white);
   padding: 8px 16px;
   border: none;
-  border-bottom-color: #212529;
+  border-bottom-color: var(--color-black);
   border-bottom: 4px solid;
   margin-bottom: 10px;
   cursor: pointer;
@@ -519,12 +598,12 @@ input {
 .dark-button-auth.active {
   font-family: "Manrope", sans-serif;
   font-weight: bold;
-  color: #9A55FF;
-  background-color: #fff;
+  color: var(--color-viola);
+  background-color: var(--color-white);
   font-size: 26px;
   padding: 8px 16px;
   border: none;
-  border-bottom-color: #9A55FF;
+  border-bottom-color: var(--color-viola);
   border-bottom: 4px solid;
   margin-bottom: 10px;
   width: 100%;
@@ -533,18 +612,18 @@ input {
 /*========== 3. Light Button ==========*/
 .light-button {
   font-family: "Manrope", sans-serif;
-  color: #9A55FF;
-  background-color: #f8f9fa;
+  color: var(--color-viola);
+  background-color: var(--color-dark-white);
   font-weight: bold;
   padding: 6px 12px;
-  border: 2px solid #9A55FF;
+  border: 2px solid var(--color-viola);
   border-radius: 5px;
   cursor: pointer;
 }
 
 .light-button:hover {
-  background-color: #9A55FF;
-  color: #f8f9fa;
+  background-color: var(--color-viola);
+  color: var(--color-dark-white);
 }
 
 /*========== 4. Sets Of Buttons ==========*/
@@ -565,18 +644,18 @@ input {
 }
 
 .status.active {
-  background-color: #e6ffe6;
-  color: #00a500;
+  background-color: var(--color-light-green);
+  color: var(--color-green);
 }
 
 .status.expired {
-  background-color: #ffe6e6;
-  color: #e60000;
+  background-color: var(--color-light-red);
+  color: var(--color-red);
 }
 
 .status.missing {
-  background-color: #fffacd;
-  color: #b58900;
+  background-color: var(--color-light-yellow);
+  color: var(--color-yellow);
 
 }
 
@@ -588,18 +667,18 @@ input {
 }
 
 .type.info {
-  background-color: #e6ffe6;
-  color: #00a500;
+  background-color:  var(--color-light-green);
+  color:  var(--color-green);
 }
 
 .type.error {
-  background-color: #ffe6e6;
-  color: #e60000;
+  background-color: var(--color-light-red);
+  color: var(--color-red);
 }
 
 .type.warning {
-  background-color: #fffacd;
-  color: #b58900;
+  background-color: var(--color-light-yellow);
+  color: var(--color-yellow);
 
 }
 
@@ -608,14 +687,14 @@ input {
   font-family: "Manrope", sans-serif;
   font-weight: bold;
   font-size: 14px;
-  color: #e60000;
+  color: var(--color-red);
 }
 
 .ok-message {
   font-family: "Manrope", sans-serif;
   font-weight: bold;
   font-size: 14px;
-  color: #00a500;
+  color: var(--color-green);
 }
 
 /************************************
@@ -630,7 +709,7 @@ input {
 
 .page-numbers a {
   margin: 0 5px;
-  color: #6c757d;
+  color: var(--color-middle-grey);
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: normal;
@@ -638,11 +717,11 @@ input {
 
 .page-numbers a.active {
   font-weight: bold;
-  color: #9A55FF;
+  color: var(--color-viola);
 }
 
 .page-numbers a:hover {
-  background-color: #e7d7ff;
+  background-color: var(--color-light-viola);
 }
 
 /************************************
@@ -655,8 +734,8 @@ input {
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
-  background-color: #9A55FF;
-  color: #f8f9fa;
+  background-color: var(--color-viola);
+  color: var(--color-dark-white);
   font-size: 14px;
   cursor: pointer;
 }
@@ -669,8 +748,8 @@ input {
   appearance: none;
   cursor: default;
   font-weight: bold;
-  background-color: #E7D7FF;
-  color: #9A55FF;
+  background-color: var(--color-light-viola);
+  color: var(--color-viola);
   border-radius: 0;
   border: none;
 }

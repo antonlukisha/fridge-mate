@@ -15,7 +15,7 @@ const ProductTable = ({ products }) => {
       <tbody>
         {products.map((product) => (
           <tr key={product.id}>
-            <td>{product.name} <span className="upload-date">Добавлен {product.addedDate}</span></td>
+            <td >{product.name} <span className="upload-date">Добавлен {product.addedDate}</span></td>
             <td>{product.type}</td>
             <td>{product.quantity}</td>
             <td>

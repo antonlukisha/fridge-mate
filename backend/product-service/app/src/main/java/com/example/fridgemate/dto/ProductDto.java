@@ -15,7 +15,6 @@ public class ProductDto {
     @Pattern(regexp = "\\d+", message = "Product type ID must be a valid number")
     private String typeId;
 
-    @NotNull(message = "Field cannot be empty")
     @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Expiry date should be in the format YYYY-MM-DD")
     private String expiryDate;
 

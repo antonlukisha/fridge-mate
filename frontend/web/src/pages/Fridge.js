@@ -10,10 +10,6 @@ import api from '../api/api';
 import AuthContext from '../context/AuthContext';
 
 const Fridge = () => {
-  const initProducts = () => {
-    const response = api.get('/products/all');
-
-  }
   const initialProducts = [
     { id: 1, name: 'Молоко Ряженка', type: 'Молоко', quantity: '100 мл', status: 'Свежий', addedDate: '29 Июл 2023' },
     { id: 2, name: 'Яблоки', type: 'Фрукты', quantity: '1 кг', status: 'Просроченный', addedDate: '01 Авг 2023' },
@@ -45,23 +41,25 @@ const Fridge = () => {
         setProducts(JSON.parse(cachedProducts));
       } else {
         const response = await api.get(`/products/all?token=${auth.token}`);
-        const gotProducts = response.data.map((item) => ({
-          id: item.id,
-          name: item.name,
-          type: item.type.name,
-          quantity: item.quantity + ' ' + item.type.quantityType,
-          status: () => {
-            let diff = Math.floor((new Date(item.expiryDate) - new Date()) / (1000*60*60*24));
-            if (diff > 1) return 'Свежий';
-            else if (diff > 0) return 'Истекает срок';
-            else return 'Просроченный';
-          },
-          addedDate: new Date(item.addedDate).toLocaleDateString('ru-RU', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric'
-          })
-        }));
+        const gotProducts = response.data.map((item) => {
+          let diff = Math.floor((new Date(item.expiryDate) - new Date()) / (1000 * 60 * 60 * 24));
+          let status = '';
+          if (diff > 1) status = 'Свежий';
+          else if (diff > 0) status = 'Истекает срок';
+          else status = 'Просроченный';
+          return {
+            id: item.id,
+            name: item.name,
+            type: item.type.name,
+            quantity: item.quantity + ' ' + item.type.quantityType,
+            status: status,
+            addedDate: new Date(item.addedDate).toLocaleDateString('ru-RU', {
+              day: '2-digit',
+              month: 'short',
+              year: 'numeric'
+            }),
+          };
+        });
 
         setProducts(gotProducts);
         localStorage.setItem('products', JSON.stringify(gotProducts));

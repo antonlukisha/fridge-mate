@@ -5,6 +5,7 @@ import com.example.fridgemate.entity.UsersEntity;
 import com.example.fridgemate.exception.UsersException;
 import com.example.fridgemate.repository.UsersRepository;
 import com.example.fridgemate.util.JwtUtil;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -526,5 +527,47 @@ public class UsersService {
             logger.info("Deleted user by token: {}", token);
             usersRepository.deleteByToken(token);
         }, executor);
+    }
+
+    /**
+     * METHOD: updatePassword.
+     * This method change user's password.
+     *
+     * @param token token.
+     * @param password new password.
+     * @return A message confirming that user by token change password.
+     */
+    public CompletableFuture<Void> updatePassword(@Valid String token, @Valid String password) {
+        return CompletableFuture.runAsync(() -> {
+            if (!isToken(token)) {
+                logger.error("Incorrect token for change verified");
+                throw new UsersException("Incorrect token.");
+            }
+            UsersEntity cachedUser = null;
+            Object cachedUserObj = redisTemplate.opsForValue().get("user-by-token: " + token);
+            if (cachedUserObj instanceof UsersEntity) {
+                cachedUser = (UsersEntity) cachedUserObj;
+            }
+            if (cachedUser == null) {
+                Optional<UsersEntity> gotUser = usersRepository.findByToken(token);
+                gotUser.ifPresent(user -> {
+                    user.setPassword(passwordEncoder.encode(password));
+                    usersRepository.save(user);
+                    redisTemplate.opsForValue().set("user-by-id: " + user.getUserId(), user, 24, TimeUnit.HOURS);
+                    redisTemplate.opsForValue().set("user-by-username: " + user.getUsername(), user, 24, TimeUnit.HOURS);
+                    redisTemplate.opsForValue().set("user-by-email: " + user.getEmail(), user, 24, TimeUnit.HOURS);
+                    redisTemplate.opsForValue().set("user-by-token: " + token, user, 24, TimeUnit.HOURS);
+                });
+                logger.info("Successfully changed password");
+                return;
+            }
+            cachedUser.setPassword(passwordEncoder.encode(password));
+            usersRepository.save(cachedUser);
+            redisTemplate.opsForValue().set("user-by-id: " + cachedUser.getUserId(), cachedUser, 24, TimeUnit.HOURS);
+            redisTemplate.opsForValue().set("user-by-username: " + cachedUser.getUsername(), cachedUser, 24, TimeUnit.HOURS);
+            redisTemplate.opsForValue().set("user-by-email: " + cachedUser.getEmail(), cachedUser, 24, TimeUnit.HOURS);
+            redisTemplate.opsForValue().set("user-by-token: " + token, cachedUser, 24, TimeUnit.HOURS);
+            logger.info("Successfully changed password");
+        });
     }
 }

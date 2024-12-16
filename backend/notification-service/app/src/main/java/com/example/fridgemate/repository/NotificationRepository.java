@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface NotificationRepository extends JpaRepository<NotificationEntity, Long> {
-    List<NotificationEntity> findAllByUserId(Long userId);
-    void deleteAllByUserId(Long userId);
+    List<NotificationEntity> findAllByToken(String token);
+    void deleteAllByToken(String token);
 }

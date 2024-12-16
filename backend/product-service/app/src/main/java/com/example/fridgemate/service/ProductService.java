@@ -7,7 +7,6 @@ import com.example.fridgemate.exception.ProductException;
 import com.example.fridgemate.repository.ProductRepository;
 import com.example.fridgemate.repository.ProductTypeRepository;
 import com.example.fridgemate.util.JwtUtil;
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -59,7 +57,12 @@ public class ProductService {
             ProductTypeEntity type = productTypeRepository.findById(Long.parseLong(dto.getTypeId())).orElseThrow(() -> new ProductException("Invalid type ID"));
             int quantity = Integer.parseInt(dto.getQuantity());
             BigDecimal amount = new BigDecimal(dto.getAmount());
-            LocalDate expiryDate = LocalDate.parse(dto.getExpiryDate());
+            LocalDate expiryDate;
+            if (dto.getExpiryDate() == null) {
+                expiryDate = LocalDate.now().plusDays(type.getShelfDays());
+            } else {
+                expiryDate = LocalDate.parse(dto.getExpiryDate());
+            }
             if (!isValidProduct(quantity, amount, expiryDate) || !isToken(token)) {
                 logger.error("Incorrect product data");
                 throw new ProductException("Incorrect product data.");
