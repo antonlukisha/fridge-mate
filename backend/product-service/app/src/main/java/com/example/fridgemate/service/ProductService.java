@@ -179,6 +179,26 @@ public class ProductService {
     }
 
     /**
+     * METHOD: getAllProductTypesByUser.
+     * This method get all personal product types from db.
+     *
+     * @param token Token.
+     * @return List of {@link ProductTypeEntity}.
+     */
+    public CompletableFuture<List<ProductTypeEntity>> getAllProductTypesByUser(String token) {
+        return CompletableFuture.supplyAsync(() -> {
+            if (!isToken(token)) {
+                logger.error("Incorrect token");
+                throw new ProductException("Incorrect token.");
+            }
+            List<ProductEntity> products = productRepository.findAllByToken(token);
+            List<ProductTypeEntity> types = products.stream().map(ProductEntity::getType).toList();
+            logger.info("Retrieved all personal product types: Count: {}", types.size());
+            return types;
+        }, executor);
+    }
+
+    /**
      * METHOD: findProductById.
      * This method find and get product by id from db.
      *

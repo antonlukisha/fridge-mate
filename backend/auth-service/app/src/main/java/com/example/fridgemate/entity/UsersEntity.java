@@ -1,14 +1,9 @@
 package com.example.fridgemate.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.redis.core.RedisHash;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 @Getter
 @Setter

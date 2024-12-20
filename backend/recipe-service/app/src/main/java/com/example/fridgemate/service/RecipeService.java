@@ -2,7 +2,6 @@ package com.example.fridgemate.service;
 
 import com.example.fridgemate.entity.RecipeEntity;
 import com.example.fridgemate.repository.RecipeRepository;
-import com.example.fridgemate.util.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,30 +30,6 @@ public class RecipeService {
         this.redisTemplate = redisTemplate;
         this.executor = executor;
     }
-
-    /**
-     * METHOD: suggestRecipes.
-     * This method get all suggest recipes for user.
-     *
-     * @return List of {@link RecipeEntity}.
-     */
-    public CompletableFuture<List<RecipeEntity>> suggestRecipes(String token) {
-        return CompletableFuture.supplyAsync(() -> {
-            List<RecipeEntity> availableRecipes = recipeRepository.findAll();
-            logger.info("Retrieved suggest recipes. Count: {}", availableRecipes.size());
-            //TODO: Get throw Gateway api recommendations
-            return availableRecipes;
-        }, executor);
-    }
-
-    /**
-     * METHOD: isToken.
-     * This method check validation of token.
-     *
-     * @param token Probable token.
-     * @return true if token is valid else false.
-     */
-    private Boolean isToken(String token) { return JwtUtil.validateToken(token); }
 
     /**
      * METHOD: getAllRecipes.

@@ -1,0 +1,43 @@
+2024-12-19 19:13:23,440 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-19 19:13:23,442 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-19 19:13:25,739 - main - ERROR - Exception on /recommend/recipes [POST]
+Traceback (most recent call last):
+  File "C:\FridgeMate\neural-networks\app\main.py", line 15, in recommend_recipes
+    products, recipes = asyncio.run(fetch_products_recipes_and_types(token))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 190, in run
+    raise RuntimeError(
+RuntimeError: asyncio.run() cannot be called from a running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\site-packages\asgiref\sync.py", line 254, in __call__
+    return call_result.result()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Tony\AppData\Local\Programs\Python\Python312\Lib\site-packages\asgiref\sync.py", line 331, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\FridgeMate\neural-networks\app\main.py", line 18, in recommend_recipes
+    except httpx.HTTPStatusError as error:
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'httpx' has no attribute 'HTTPStatusError'
+2024-12-19 19:13:25,749 - werkzeug - INFO - 127.0.0.1 - - [19/Dec/2024 19:13:25] "[35m[1mPOST /recommend/recipes?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib3kiLCJpYXQiOjE3MzI1NDIwNzksImV4cCI6NDg4NjE0MjA3OX0.1B3tzMqLwTQa-wLVTpz8scEvue_pxqryMtfKMQuxncM HTTP/1.1[0m" 500 -

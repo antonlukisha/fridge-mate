@@ -40,6 +40,20 @@ public class ProductController {
     }
 
     /**
+     * METHOD GET: getAllProductTypesByUser.
+     * This method get all product types in fridge.
+     *
+     * @param token User's type.
+     * @return OK (200) or NO_CONTENT (204).
+     */
+    @Operation(summary = "Получить все типы продуктов конкретного пользователя")
+    @GetMapping("/all/type")
+    public CompletableFuture<ResponseEntity<?>> getAllProductTypesByUser(@Valid @RequestParam("token") String token) {
+        return productService.getAllProductTypesByUser(token)
+                .thenApply(types -> !types.isEmpty() ? ResponseEntity.ok(types) : ResponseEntity.noContent().build());
+    }
+
+    /**
      * METHOD GET: getByIdProducts.
      * This method send response which get product by id.
      *

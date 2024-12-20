@@ -51,21 +51,6 @@ public class RecipeController {
                         .orElseGet(() -> ResponseEntity.noContent().build()));
     }
 
-    //TODO: Integrate recommendation system for getting suggest recipes
-    /**
-     * METHOD GET: suggestRecipes.
-     * This method get all suggest recipes.
-     *
-     * @param token User's token.
-     * @return OK (200) or NO_CONTENT (204).
-     */
-    @Operation(summary = "Получить все рекомендованные рецепты для конкретного пользователя")
-    @GetMapping("/suggest")
-    public CompletableFuture<ResponseEntity<?>> suggestRecipes(@RequestParam("token") String token) {
-        return recipeService.suggestRecipes(token)
-                .thenApply(recipes -> recipes.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(recipes));
-    }
-
     /**
      * METHOD ExceptionHandler: handleRecipeValidationException.
      * This method is handler of MethodArgumentNotValidException.
