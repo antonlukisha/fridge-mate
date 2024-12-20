@@ -10,20 +10,6 @@ import api from '../api/api';
 import AuthContext from '../context/AuthContext';
 
 const Fridge = () => {
-  const initialProducts = [
-    { id: 1, name: 'Молоко Ряженка', type: 'Молоко', quantity: '100 мл', status: 'Свежий', addedDate: '29 Июл 2023' },
-    { id: 2, name: 'Яблоки', type: 'Фрукты', quantity: '1 кг', status: 'Просроченный', addedDate: '01 Авг 2023' },
-    { id: 3, name: 'Сыр', type: 'Молочные продукты', quantity: '200 г', status: 'Истекает срок', addedDate: '15 Ноя 2023' },
-    { id: 4, name: 'Хлеб', type: 'Хлебобулочные изделия', quantity: '1 шт', status: 'Свежий', addedDate: '18 Ноя 2023' },
-    { id: 5, name: 'Молоко Ряженка', type: 'Молоко', quantity: '100 мл', status: 'Свежий', addedDate: '29 Июл 2023' },
-    { id: 6, name: 'Яблоки', type: 'Фрукты', quantity: '1 кг', status: 'Просроченный', addedDate: '01 Авг 2023' },
-    { id: 7, name: 'Сыр', type: 'Молочные продукты', quantity: '200 г', status: 'Истекает срок', addedDate: '15 Ноя 2023' },
-    { id: 8, name: 'Хлеб', type: 'Хлебобулочные изделия', quantity: '1 шт', status: 'Свежий', addedDate: '18 Ноя 2023' },
-    { id: 9, name: 'Молоко Ряженка', type: 'Молоко', quantity: '100 мл', status: 'Свежий', addedDate: '29 Июл 2023' },
-    { id: 10, name: 'Яблоки', type: 'Фрукты', quantity: '1 кг', status: 'Просроченный', addedDate: '01 Авг 2023' },
-    { id: 11, name: 'Сыр', type: 'Молочные продукты', quantity: '200 г', status: 'Истекает срок', addedDate: '15 Ноя 2023' },
-    { id: 12, name: 'Хлеб', type: 'Хлебобулочные изделия', quantity: '1 шт', status: 'Свежий', addedDate: '18 Ноя 2024' },
-  ];
 
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState('');
