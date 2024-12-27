@@ -7,7 +7,11 @@ const Note = ({ note, setNote, items, setItems }) => {
 
   const handleEntry = () => {
     if (note === '' || note.includes('\n') || note.length > 20) return;
-    setItems((prevItems) => [...prevItems, { id: note.length + 1, name: note, bought: false }]);
+    const newItem = { id: items.length + 1, name: note, bought: false };
+    setItems((prevItems) => [...prevItems, newItem]);
+    let savedItems = JSON.parse(localStorage.getItem('product-list')) || [];
+    savedItems.push(newItem);
+    localStorage.setItem('product-list', JSON.stringify(savedItems));
     setNote('');
   };
 

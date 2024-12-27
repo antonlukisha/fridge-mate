@@ -74,6 +74,7 @@ canvas {
  *             Components             *
  **************************************/
 /*========== 1. Dividers ==========*/
+
 .divider {
   width: 100%;
   height: 1.5px;
@@ -220,6 +221,7 @@ h4 {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 /*========== 5. Text ==========*/
@@ -495,6 +497,10 @@ input {
   box-sizing: border-box;
 }
 
+.input-tick {
+  margin: 0 10px;
+}
+
 /*========== 2. Search Field ==========*/
 .search-field {
   display: flex;
@@ -556,6 +562,7 @@ input[type="checkbox"] {
   border-bottom-right-radius: 5px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .dark-input-button:hover {
@@ -573,6 +580,7 @@ input[type="checkbox"] {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .dark-button:hover {
@@ -593,6 +601,7 @@ input[type="checkbox"] {
   margin-bottom: 10px;
   cursor: pointer;
   width: 100%;
+  transition: background-color 0.3s;
 }
 
 .dark-button-auth.active {
@@ -619,6 +628,7 @@ input[type="checkbox"] {
   border: 2px solid var(--color-viola);
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .light-button:hover {
@@ -758,10 +768,127 @@ input[type="checkbox"] {
   border-radius: 5px;
 }
 
+.dropdown-item {
+  padding: 5px 12px;
+}
+
+.dropdown-item:hover {
+  color: var(--color-viola);
+  background-color: var(--color-light-viola);
+}
+
 /***********************************
  *             Entries             *
  ***********************************/
 .entries {
   font-weight: bold;
   font-family: "Manrope", sans-serif;
+}
+
+/*********************************
+ *             Model             *
+ *********************************/
+
+.modal-content {
+  font-family: "Manrope", sans-serif;
+  width: 80%;
+  max-width: 500px;
+  margin: 25px auto;
+  padding: 24px 28px;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  max-height: 85vh;
+  overflow-y: hidden;
+}
+
+.modal-content .header {
+  margin: 0;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.modal-body input {
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.modal-content .actions {
+  margin: 20px 0;
+}
+
+/******************************************
+ *             Recipe Details             *
+ ******************************************/
+
+.recipe-details {
+  padding: 20px;
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+.recipe-details::-webkit-scrollbar {
+  display: none;
+}
+
+.recipe-details h3 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.recipe-details h4 {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.recipe-details ul {
+  list-style-type: disc;
+  margin-left: 5px;
+  padding: 0;
+}
+
+.recipe-details ul li {
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 5px 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.recipe-details ul li:hover {
+  background-color: var(--color-white);
+}
+
+.recipe-details .available:hover {
+  background-color: var(--color-light-green);
+}
+
+.recipe-details .not-available:hover {
+  background-color: var(--color-light-red);
+}
+
+.recipe-details p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-top: 15px;
+  text-align: justify;
+}
+
+.recipe-details .actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.recipe-details .dark-button {
+  padding: 10px 20px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }

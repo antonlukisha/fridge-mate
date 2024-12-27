@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Filter = ({ searchInput, setSearchInput, activeFilter, setActiveFilter, setCurrentPage }) => {
+const Filter = ({ searchInput, setSearchInput, activeFilter, setActiveFilter, setCurrentPage, clearExpiryProducts }) => {
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handleFilterChange = (filter) => {
     setActiveFilter(filter);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   return (
@@ -43,7 +43,7 @@ const Filter = ({ searchInput, setSearchInput, activeFilter, setActiveFilter, se
           />
           <button className="dark-input-button">Найти</button>
         </div>
-        <button className="light-button">Удалить просроченные</button>
+        <button className="light-button" onClick={clearExpiryProducts}>Удалить просроченные</button>
       </div>
     </div>
   );

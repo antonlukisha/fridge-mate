@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
     setAuth({ auth: false, confirm: false, username: '', email: '', token: '' });
     localStorage.removeItem('auth-data');
 		localStorage.removeItem('products');
+    localStorage.removeItem('product-list');
   };
 
   return (

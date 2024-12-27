@@ -19,10 +19,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -57,9 +59,14 @@ public class ProductService {
             ProductTypeEntity type = productTypeRepository.findById(Long.parseLong(dto.getTypeId())).orElseThrow(() -> new ProductException("Invalid type ID"));
             int quantity = Integer.parseInt(dto.getQuantity());
             BigDecimal amount = new BigDecimal(dto.getAmount());
-            LocalDate expiryDate;
-            if (dto.getExpiryDate() == null) {
-                expiryDate = LocalDate.now().plusDays(type.getShelfDays());
+            LocalDate expiryDate, addedDate;
+            if (Objects.equals(dto.getAddedDate(), "")) {
+                addedDate = LocalDate.now();
+            } else {
+                addedDate = LocalDate.parse(dto.getAddedDate());
+            }
+            if (Objects.equals(dto.getExpiryDate(), "")) {
+                expiryDate = addedDate.plusDays(type.getShelfDays());
             } else {
                 expiryDate = LocalDate.parse(dto.getExpiryDate());
             }
@@ -70,13 +77,12 @@ public class ProductService {
             ProductEntity product = new ProductEntity();
             product.setToken(token);
             product.setName(dto.getName());
-            product.setAddedDate(LocalDate.now());
+            product.setAddedDate(addedDate);
             product.setAmount(amount);
             product.setExpiryDate(expiryDate);
             product.setQuantity(quantity);
             product.setType(type);
             ProductEntity savedProduct = productRepository.save(product);
-            redisTemplate.opsForValue().set("product: " + savedProduct.getId(), savedProduct, 24, TimeUnit.HOURS);
             logger.info("Product added: Id: {}", savedProduct.getId());
             return savedProduct;
         }, executor);
@@ -99,7 +105,7 @@ public class ProductService {
      * @return true if product is expired else false.
      */
     private boolean isProductExpired(ProductEntity product) {
-        return product.getExpiryDate().isAfter(LocalDate.now());
+        return product.getExpiryDate().isBefore(LocalDate.now());
     }
 
     /**
@@ -110,7 +116,7 @@ public class ProductService {
      * @return true if product is missing else false.
      */
     private boolean isProductMissing(ProductEntity product) {
-        return (product.getExpiryDate().isBefore(LocalDate.now())
+        return (product.getExpiryDate().isAfter(LocalDate.now())
                 && ChronoUnit.DAYS.between(LocalDate.now(), product.getExpiryDate()) <= 1);
     }
 
@@ -123,9 +129,11 @@ public class ProductService {
      */
     public CompletableFuture<List<ProductEntity>> getExpiredProducts(String token) {
         return CompletableFuture.supplyAsync(() -> {
-            List<ProductEntity> products = productRepository.findAllByToken(token);
+            List<ProductEntity> products = productRepository.findAllByToken(token).stream()
+                    .filter(this::isProductExpired)
+                    .toList();
             logger.info("Retrieved expired products: Count: {}", products.size());
-            return products.stream().filter(this::isProductExpired).toList();
+            return products;
         }, executor);
     }
 
@@ -138,9 +146,11 @@ public class ProductService {
      */
     public CompletableFuture<List<ProductEntity>> getMissingProducts(String token) {
         return CompletableFuture.supplyAsync(() -> {
-            List<ProductEntity> products = productRepository.findAllByToken(token);
+            List<ProductEntity> products = productRepository.findAllByToken(token).stream()
+                    .filter(this::isProductMissing)
+                    .toList();
             logger.info("Retrieved missing products: Count: {}", products.size());
-            return products.stream().filter(this::isProductMissing).toList();
+            return products;
         }, executor);
     }
 

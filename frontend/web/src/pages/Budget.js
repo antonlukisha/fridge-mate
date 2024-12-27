@@ -45,7 +45,7 @@ const Budget = () => {
         beginAtZero: true,
         ticks: { callback: (value) => ( (value >= 1000) ? (value / 1000) + 'к' : value ), font: { family: 'Manrope, sans-serif', size: 12, }, color: '#212529', },
       },
-      x: { 
+      x: {
         ticks: { callback: (value) => data.labels[value].substring(0, 3), font: { family: 'Manrope, sans-serif', size: 12, }, color: '#212529', },
       },
     },
@@ -108,14 +108,14 @@ const Budget = () => {
               </svg>
               <h3>Расходы</h3>
             </div>
-            
+
             <div className="box">
               <svg viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg" height="10px" width="10px">
                 <circle cx="50%" cy="50%" r="1" fill="#62912C"/>
               </svg>
               <h3>Запланированные</h3>
             </div>
-            
+
             <div className="box">
               <svg viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg" height="10px" width="10px">
                 <circle cx="50%" cy="50%" r="1" fill="#9A55FF"/>
@@ -126,68 +126,6 @@ const Budget = () => {
           </div>
           <Line data={data} options={options} />
         </section>
-        <section className="chart-mini">
-          <h2>Статистика расходов</h2>
-        </section>
-      </div>
-      <div className="budget-setting">
-        <label htmlFor="monthly-budget">Установить месячный бюджет: </label>
-        <input 
-          type="number" 
-          id="monthly-budget" 
-          value={monthlyBudget} 
-          onChange={(e) => setMonthlyBudget(parseFloat(e.target.value) || 0)} 
-          placeholder="Введите бюджет"
-        />
-      </div>
-      
-      {/* Display Budget Status */}
-      <div className="budget-status">
-        <p>Потрачено: <strong>{totalSpent} ₽</strong></p>
-        <p>Остаток: <strong>{remainingBudget >= 0 ? remainingBudget : 0} ₽</strong></p>
-        {remainingBudget < 0 && <p className="warning">Вы превысили бюджет!</p>}
-      </div>
-
-      {/* Add New Expense */}
-      <div className="add-expense">
-        <h3>Добавить расходы</h3>
-        <input 
-          type="text" 
-          name="name" 
-          value={newExpense.name} 
-          onChange={handleExpenseChange} 
-          placeholder="Название товара"
-        />
-        <input 
-          type="number" 
-          name="amount" 
-          value={newExpense.amount} 
-          onChange={handleExpenseChange} 
-          placeholder="Стоимость"
-        />
-        <button onClick={handleAddExpense}>Добавить</button>
-      </div>
-
-      {/* List of Expenses */}
-      <div className="expense-list">
-        <h3>Текущие расходы</h3>
-        {expenses.length > 0 ? (
-          <ul>
-            {expenses.map((expense, index) => (
-              <li key={index}>
-                {expense.name}: {expense.amount} ₽
-                <button className="remove-expense" onClick={() => handleRemoveExpense(index)}>Удалить</button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Нет записанных расходов.</p>
-        )}
-      </div>
-
-      {/* Reset Button */}
-      <div className="reset-budget">
-        <button onClick={handleReset}>Сбросить бюджет и расходы</button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Note from '../components/Note';
@@ -12,6 +12,17 @@ const ShoppingList = () => {
   const handleFridgeClick = () => {
     navigate('/fridge');
   };
+
+  const handleClear = () => {
+    localStorage.removeItem('product-list');
+    setItems([]);
+  }
+
+  useEffect(() => {
+    const savedItems = JSON.parse(localStorage.getItem('product-list')) || [];
+    setItems(savedItems);
+  }, []);
+
 
   return (
     <div className="main">
@@ -27,7 +38,7 @@ const ShoppingList = () => {
           />
           <div className="actions">
             <button className="dark-button">Добавить купленные продукты</button>
-            <button className="dark-button" onClick={() => {setItems([])}}>Очистить список</button>
+            <button className="dark-button" onClick={handleClear}>Очистить список</button>
           </div>
         </section>
         <section>

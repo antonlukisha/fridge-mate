@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductTable = ({ products }) => {
+const ProductTable = ({ products, deleteAction }) => {
   return (
     <table className="document-table">
       <thead>
@@ -26,7 +26,7 @@ const ProductTable = ({ products }) => {
             <td>
               <div className="actions">
                 <button className="light-button">Изменить</button>
-                <button className="light-button">Удалить</button>
+                <button className="light-button" onClick={() => deleteAction(product.id)}>Удалить</button>
               </div>
             </td>
           </tr>

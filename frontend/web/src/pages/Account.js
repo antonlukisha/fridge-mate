@@ -5,7 +5,7 @@ import SplashAccount from '../components/SplashAccount';
 import AuthContext from '../context/AuthContext';
 
 function Account() {
-  const { auth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext); 
 
   if (!auth.auth) {
     return <Navigate to="/login" />;
