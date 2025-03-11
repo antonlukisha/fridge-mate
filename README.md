@@ -12,6 +12,7 @@ FridgeMate is a web-based application (with potential integration to mobile plat
 
 The application consists of a frontend developed in React and a backend built with Java Spring Boot. It also integrates Python (PyTorch) for neural network operations to provide personalized recipe recommendations based on the food items in the user's fridge. Each working directory of the project includes a dedicated README file with a detailed explanation of its structure.
 
+
 ## :paperclip: Bash Example
 
 For run of this application project directory has `docker-compose.yml` which run all services, ai-part, front-end and another dependences.
